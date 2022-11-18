@@ -2,12 +2,17 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <math.h>
 #include <tree_funcs.h>
 #include <tree_debug.h>
+#include <general_debug.h>
+#include <diff_debug.h>
 
 static FILE *TREE_LOGS = 0;
 static FILE *HTM_LOGS  = 0;
 static FILE *TREE_GRAPH_LOGS = 0;
+
+static char get_op(Operation operation);
 
 int open_tree_logs()
 {
@@ -64,27 +69,29 @@ int tree_print(const Node *node, const Mode_of_print mode)
         return 0;
     }
 
-    fprintf(TREE_LOGS," ( ");
-    PRINT_IN_LOG_IF(mode == PREORDER, "%s", node->data);
+    fprintf(TREE_LOGS,"(");
+    PRINT_DIFF_IN_LOG_IF(mode == PREORDER, node);
 
     if(node->l_son)
         {   
             tree_print(node->l_son, mode);
         }
-    else    fprintf(TREE_LOGS, " (VOID) ");
+    // else    fprintf(TREE_LOGS, " (VOID) ");
 
-    PRINT_IN_LOG_IF(mode == INORDER, "%s", node->data);
+    PRINT_DIFF_IN_LOG_IF(mode == INORDER, node);
+
+    // printf("%x  %x  %x\n", node->dbl_value, node->op_value, node->var_value);
 
     if (node->r_son)
     {
         tree_print(node->r_son, mode);
     }
     
-    else    fprintf(TREE_LOGS, " (VOID) ");
+    // else    fprintf(TREE_LOGS, " (VOID) ");
 
-    PRINT_IN_LOG_IF(mode == POSTORDER, "%s", node->data);
+    PRINT_DIFF_IN_LOG_IF(mode == POSTORDER, node);
     
-    fprintf(TREE_LOGS," ) ");
+    fprintf(TREE_LOGS,")");
 
     fflush(TREE_LOGS);
     return 0;
@@ -152,11 +159,31 @@ int tree_print_graph(const Node *node)
                         
                         "<table border=\"0\" cellborder=\"1\" cellspacing=\"0\">\n"
                         
-                        "    <tr><td bgcolor=\"#ad8abf\"><font color=\"#061f2b\">parent = %p</font></td></tr>\n" 
-                        
-                        "    <tr><td bgcolor=\"lightblue\"><font color=\"#0000ff\">data = %s</font></td></tr>\n"
-                        
-                        "    <tr><td bgcolor=\"lightgreen\"><font color=\"black\">cur_address = %p</font></td></tr>\n"
+                        "    <tr><td bgcolor=\"#ad8abf\"><font color=\"#061f2b\">parent = %p</font></td></tr>\n",
+                        num_of_node, node->parent);
+    switch(node->type)
+    {
+        case VAR:
+        {
+            fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightblue\"><font color=\"#0000ff\"> %c </font></td></tr>\n",
+             node->value.var_value);
+            break;
+        }
+        case NUM:
+        {
+            fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightblue\"><font color=\"#0000ff\"> %g </font></td></tr>\n",
+            node->value.dbl_value);
+            break;
+        }
+        case OP:
+        {   
+            fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightblue\"><font color=\"#0000ff\"> %c </font></td></tr>\n", 
+            get_op(node->value.op_value));
+            break;
+        }
+    }
+
+    fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightgreen\"><font color=\"black\">cur_address = %p</font></td></tr>\n"
                         
                         "    <tr>\n"
                         "    <td>\n"
@@ -178,14 +205,14 @@ int tree_print_graph(const Node *node)
                         "    </tr>\n" 
                         
                         "</table>>\n"
-                        "]\n\n", num_of_node, node->parent, node->data, node, num_of_node, node->l_son, num_of_node, node->r_son);
+                        "]\n\n", node, num_of_node, node->l_son, num_of_node, node->r_son);
     num_of_node++;   
 
     if(node->l_son)
-        {   
-            fprintf(TREE_GRAPH_LOGS, "node%d: L%d -> node%d; \n", cur_node, cur_node, num_of_node);
-            tree_print_graph(node->l_son);
-        }
+    {   
+        fprintf(TREE_GRAPH_LOGS, "node%d: L%d -> node%d; \n", cur_node, cur_node, num_of_node);
+        tree_print_graph(node->l_son);
+    }
 
     if (node->r_son)
     {   
@@ -218,4 +245,35 @@ int print_in_logs(const char *str,...)
     }
 
     return 0;
+}
+
+static char get_op(Operation operation)
+{
+    switch(operation)
+    {   
+        case NOT_OP:
+        {
+            return 'V';
+        }
+        case ADD:
+        {
+            return '+';
+        }
+        case SUB:
+        {
+            return '-';
+        }
+        case MUL:
+        {
+            return '*';
+        }
+        case DIV:
+        {
+            return '/';
+        }
+        default:
+        {
+            return 'E';
+        }
+    }
 }
