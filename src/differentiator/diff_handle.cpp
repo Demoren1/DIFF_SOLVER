@@ -310,7 +310,7 @@ Node *diff_diff(Node *node)
                 }
                 case MUL:
                 {   
-                    Diff_MUL(new_node);
+                    Diff_MUL(new_node, ADD);
 
                     return new_node;
                     break;
@@ -321,10 +321,31 @@ Node *diff_diff(Node *node)
                     Node *r_node = 0;
 
                     Create_OP_new_node(new_node, DIV);
-                    Create_OP_new_node(l_node, SUB);
                     Create_OP_new_node(r_node, MUL);
+                    Diff_MUL(l_node, SUB)
                     
                     node_connect(new_node, l_node, LEFT);
+                    node_connect(new_node, r_node, RIGHT);
+                    
+                    Node *rr_node = CR;
+                    Node *rl_node = CR;
+
+                    node_connect(r_node, rl_node, LEFT);
+                    node_connect(r_node, rr_node, RIGHT);
+
+                    DBG;
+                    return new_node;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    return 0;
+}
+
+#if 0
+node_connect(new_node, l_node, LEFT);
                     node_connect(new_node, r_node, RIGHT);
 
                     Node *ll_node = 0;
@@ -345,21 +366,6 @@ Node *diff_diff(Node *node)
                     node_connect(ll_node, llr_node, RIGHT);   
                                                             
                     node_connect(lr_node, lrl_node, LEFT);    
-                    node_connect(lr_node, lrr_node, RIGHT);   
-                    
-                    Node *rr_node = CR;
-                    Node *rl_node = CR;
+                    node_connect(lr_node, lrr_node, RIGHT);  
 
-                    node_connect(r_node, rl_node, LEFT);
-                    node_connect(r_node, rr_node, RIGHT);
-
-                    DBG;
-                    return new_node;
-                    break;
-                }
-            }
-            break;
-        }
-    }
-    return 0;
-}
+#endif

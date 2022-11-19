@@ -56,28 +56,27 @@ Node *diff_diff(Node *node);
         NNL->parent = new_node;                          \
         NNR->parent = new_node;
 
-#define Diff_MUL(new_node)                              \
-                    Create_OP_new_node(new_node, ADD);  \
-                    {                                   \
-                    Node *l_node = 0;                   \
-                    Node *r_node = 0;                   \
+#define Diff_MUL(new_node, oper_val)                   \
+                    Create_OP_new_node(new_node, oper_val);  \
+                                                       \
+                    Node *__l_node = 0;                   \
+                    Node *__r_node = 0;                   \
                                                         \
-                    Create_OP_new_node(l_node, MUL);    \
-                    Create_OP_new_node(r_node, MUL);    \
+                    Create_OP_new_node(__l_node, MUL);    \
+                    Create_OP_new_node(__r_node, MUL);    \
                                                         \
-                    node_connect(new_node, l_node, LEFT);   \
-                    node_connect(new_node, r_node, RIGHT);  \
+                    node_connect(new_node, __l_node, LEFT);   \
+                    node_connect(new_node, __r_node, RIGHT);  \
                                                             \
-                    Node *lr_node = CR;                 \
-                    Node *rl_node = CL;                 \
-                    Node *ll_node = DL;                 \
-                    Node *rr_node = DR;                 \
+                    Node *__lr_node = CR;                 \
+                    Node *__rl_node = CL;                 \
+                    Node *__ll_node = DL;                 \
+                    Node *__rr_node = DR;                 \
                                                         \
-                    node_connect(l_node, ll_node, LEFT);    \
-                    node_connect(l_node, lr_node, RIGHT);   \
+                    node_connect(__l_node, __ll_node, LEFT);    \
+                    node_connect(__l_node, __lr_node, RIGHT);   \
                                                             \
-                    node_connect(r_node, rl_node, LEFT);    \
-                    node_connect(r_node, rr_node, RIGHT);   \
-                    }
+                    node_connect(__r_node, __rl_node, LEFT);    \
+                    node_connect(__r_node, __rr_node, RIGHT);   
 
 #endif
