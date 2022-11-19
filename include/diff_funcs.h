@@ -56,11 +56,28 @@ Node *diff_diff(Node *node);
         NNL->parent = new_node;                          \
         NNR->parent = new_node;
 
-#define Diff_MUL(new_node, new_node1, new_node2)        \
-        Create_OP_new_node(new_node, MUL);              \
-        NNL##1 = diff_diff(new_node1);                  \
-        NNL##1->parent = new_node;                      \
-        NNR##2->parent = new_node;
-
+#define Diff_MUL(new_node)                              \
+                    Create_OP_new_node(new_node, ADD);  \
+                    {                                   \
+                    Node *l_node = 0;                   \
+                    Node *r_node = 0;                   \
+                                                        \
+                    Create_OP_new_node(l_node, MUL);    \
+                    Create_OP_new_node(r_node, MUL);    \
+                                                        \
+                    node_connect(new_node, l_node, LEFT);   \
+                    node_connect(new_node, r_node, RIGHT);  \
+                                                            \
+                    Node *lr_node = CR;                 \
+                    Node *rl_node = CL;                 \
+                    Node *ll_node = DL;                 \
+                    Node *rr_node = DR;                 \
+                                                        \
+                    node_connect(l_node, ll_node, LEFT);    \
+                    node_connect(l_node, lr_node, RIGHT);   \
+                                                            \
+                    node_connect(r_node, rl_node, LEFT);    \
+                    node_connect(r_node, rr_node, RIGHT);   \
+                    }
 
 #endif

@@ -310,27 +310,50 @@ Node *diff_diff(Node *node)
                 }
                 case MUL:
                 {   
+                    Diff_MUL(new_node);
+
+                    return new_node;
+                    break;
+                }
+                case DIV:
+                {   
                     Node *l_node = 0;
                     Node *r_node = 0;
-            
-                    Create_OP_new_node(new_node, ADD);
-                    Create_OP_new_node(l_node, MUL);
-                    Create_OP_new_node(r_node, MUL);
 
+                    Create_OP_new_node(new_node, DIV);
+                    Create_OP_new_node(l_node, SUB);
+                    Create_OP_new_node(r_node, MUL);
+                    
                     node_connect(new_node, l_node, LEFT);
                     node_connect(new_node, r_node, RIGHT);
 
-                    Node *lr_node = CR;
-                    Node *rl_node = CL;
-                    Node *ll_node = DL;
-                    Node *rr_node = DR;
+                    Node *ll_node = 0;
+                    Node *lr_node = 0;
+
+                    Create_OP_new_node(ll_node, MUL);
+                    Create_OP_new_node(lr_node, MUL);
 
                     node_connect(l_node, ll_node, LEFT);
                     node_connect(l_node, lr_node, RIGHT);
 
+                    Node *llr_node = CR;                
+                    Node *lrl_node = CL;                
+                    Node *lll_node = DL;                
+                    Node *lrr_node = DR;
+                    
+                    node_connect(ll_node, lll_node, LEFT);    
+                    node_connect(ll_node, llr_node, RIGHT);   
+                                                            
+                    node_connect(lr_node, lrl_node, LEFT);    
+                    node_connect(lr_node, lrr_node, RIGHT);   
+                    
+                    Node *rr_node = CR;
+                    Node *rl_node = CR;
+
                     node_connect(r_node, rl_node, LEFT);
                     node_connect(r_node, rr_node, RIGHT);
 
+                    DBG;
                     return new_node;
                     break;
                 }
