@@ -19,6 +19,8 @@ static int create_node_if_need(char cur_sym, Node* node, Buffer *buff);
 
 static int exit_node_if_need(char cur_sym, Buffer *buff);
 
+static Node *diff_node_ctor(Type_of_expression type, const void *value);
+
 static FILE* SRC = 0;
 
 int diff_handle_src(const char* path_to_file, Buffer *buff)
@@ -133,7 +135,6 @@ static int input_val_type(Node *node, Buffer *buff)
 {
     int cur_sym = buff->buffer[buff->curr_index];
     int cur_pos = buff->curr_index;
-    printf("after cur_sym = %c\n", cur_sym);
 
     if (isalpha(cur_sym))
     {
@@ -210,12 +211,12 @@ Node *diff_connect_node(Node *parent, Node *new_node)
     
     if (parent->l_son == NULL)                 
     {                 
-        //DBG;                  
+        //                  
         parent->l_son = new_node;       
     }                                   
     else if(parent->r_son == NULL)             
     {       
-        //DBG;                            
+        //                            
         parent->r_son = new_node;       
     }                                   
     else    SOFT_ASS_NO_RET(1);
@@ -223,11 +224,34 @@ Node *diff_connect_node(Node *parent, Node *new_node)
     return new_node;
 }
 
+Node *diff_node_ctor(Type_of_expression type, const void *v_value)
+{   
+    if (type == OP)
+    {                                                
+        Operation *value = (Operation*) value;     
+        return _diff_node_ctor(type, NAN, *value, ' ');
+    }     
+    else if (type == VAR)                                           
+    {
+        char *value = (char*) v_value;
+        return _diff_node_ctor(type, NAN, NOT_OP, *value);       
+    }
+    else if (type == NUM)                                           
+     {   
+        double *value = (double*) v_value; 
+
+        return _diff_node_ctor(type, *value, NOT_OP, ' ');       
+     }
+
+     return 0;
+}
+
+
 Node *_diff_node_ctor(Type_of_expression type, double dbl_value, Operation op_value, char var_value)
 {
-    Node *node = {};
-    node = node_ctor();
+    Node *node = node_ctor();
     SOFT_ASS_NO_RET(node == NULL);
+    node->type = type;
 
     if (dbl_value != NAN)
     {
@@ -246,4 +270,73 @@ Node *_diff_node_ctor(Type_of_expression type, double dbl_value, Operation op_va
     return node;   
 }
 
+Node *diff_diff(Node *node)
+{
+    Type_of_expression type = node->type;
+    Node *new_node = 0;
+    printf("type = %d\n", type);
+    switch(type)
+    {
+        case NUM:
+        {   
+            double value = 0;
+            return diff_node_ctor(NUM, &value);
+            break;
+        }
+        case VAR:
+        {   
+            double value = 1;
+            return diff_node_ctor(NUM, &value);
+            break;
+        }
+        case OP:
+        {
+            
+            switch (node->value.op_value)
+            {
+                case ADD:
+                {   
+                    Diff_ADD(new_node)
 
+                    return new_node;
+                    break;
+                }
+                case SUB:
+                {   
+                    Diff_SUB(new_node);
+
+                    return new_node;
+                    break;
+                }
+                case MUL:
+                {   
+                    Node *l_node = 0;
+                    Node *r_node = 0;
+            
+                    Create_OP_new_node(new_node, ADD);
+                    Create_OP_new_node(l_node, MUL);
+                    Create_OP_new_node(r_node, MUL);
+
+                    node_connect(new_node, l_node, LEFT);
+                    node_connect(new_node, r_node, RIGHT);
+
+                    Node *lr_node = CR;
+                    Node *rl_node = CL;
+                    Node *ll_node = DL;
+                    Node *rr_node = DR;
+
+                    node_connect(l_node, ll_node, LEFT);
+                    node_connect(l_node, lr_node, RIGHT);
+
+                    node_connect(r_node, rl_node, LEFT);
+                    node_connect(r_node, rr_node, RIGHT);
+
+                    return new_node;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    return 0;
+}

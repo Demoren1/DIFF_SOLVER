@@ -181,6 +181,7 @@ int tree_print_graph(const Node *node)
             get_op(node->value.op_value));
             break;
         }
+        default: SOFT_ASS_NO_RET(1);
     }
 
     fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightgreen\"><font color=\"black\">cur_address = %p</font></td></tr>\n"

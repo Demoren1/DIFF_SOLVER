@@ -22,13 +22,17 @@ int main()
     }
     puts(" ");
 
-    // printf("tree.root address = %p\n", tree.root);
     diff_do_tree(tree.root, &buff);
 
     Node *cool_node = node_copy_node(tree.root);
     TREE_DUMP(cool_node, INORDER);
+    
+    Node *diff_cool_node = diff_diff(cool_node);
+
+    TREE_DUMP(diff_cool_node, INORDER);
 
     node_dtor(cool_node);
+    node_dtor(diff_cool_node);
     node_dtor_calloc_data(tree.root, buff.buffer, buff.size);
     node_dtor(tree.root);
     diff_buff_dtor(&buff);

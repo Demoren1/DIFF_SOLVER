@@ -153,7 +153,7 @@ static int connect_with_parent(Node *parent, Node *new_node)
 
 int node_copy_data(Node *new_node, Node *old_node)
 {
-    // new_node->value = old_node->value;
+    new_node->value = old_node->value;
 
     new_node->type = old_node->type;
     new_node->pos = old_node->pos;
