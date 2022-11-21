@@ -25,58 +25,6 @@ Node *diff_connect_node(Node *parent, Node *new_node);
 
 Node *diff_diff(Node *node);
 
-#define NL node->l_son
-#define NR node->r_son
-
-#define NNL new_node->l_son
-#define NNR new_node->r_son
-
-#define CL node_copy_node(NL)
-#define CR node_copy_node(NR)
-
-#define DL diff_diff(NL);
-#define DR diff_diff(NR);
-
-#define Create_OP_new_node(new_node, oper_value)        \
-            new_node = node_ctor();                     \
-            new_node->value.op_value = oper_value;      \
-            new_node->type = OP;                        \
-
-#define Diff_ADD(new_node)                               \
-        Create_OP_new_node(new_node, ADD);               \
-        NNL = DL;                                        \
-        NNR = DR;                                        \
-        NNL->parent = new_node;                          \
-        NNR->parent = new_node;
-
-#define Diff_SUB(new_node)                               \
-        Create_OP_new_node(new_node, SUB);               \
-        NNL = DL;                                        \
-        NNR = DR;                                        \
-        NNL->parent = new_node;                          \
-        NNR->parent = new_node;
-
-#define Diff_MUL(new_node, oper_val)                   \
-                    Create_OP_new_node(new_node, oper_val);  \
-                                                       \
-                    Node *__l_node = 0;                   \
-                    Node *__r_node = 0;                   \
-                                                        \
-                    Create_OP_new_node(__l_node, MUL);    \
-                    Create_OP_new_node(__r_node, MUL);    \
-                                                        \
-                    node_connect(new_node, __l_node, LEFT);   \
-                    node_connect(new_node, __r_node, RIGHT);  \
-                                                            \
-                    Node *__lr_node = CR;                 \
-                    Node *__rl_node = CL;                 \
-                    Node *__ll_node = DL;                 \
-                    Node *__rr_node = DR;                 \
-                                                        \
-                    node_connect(__l_node, __ll_node, LEFT);    \
-                    node_connect(__l_node, __lr_node, RIGHT);   \
-                                                            \
-                    node_connect(__r_node, __rl_node, LEFT);    \
-                    node_connect(__r_node, __rr_node, RIGHT);   
+Priorities find_op_priority(Operation operation);
 
 #endif

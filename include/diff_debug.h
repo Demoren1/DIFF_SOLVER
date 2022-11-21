@@ -5,7 +5,7 @@
                                                         {                                                       \
                                                             if (node->type == OP)                               \
                                                             {                                                   \
-                                                                fprintf(TREE_LOGS, "%c", get_op(node->value.op_value));       \
+                                                                fprintf(TREE_LOGS, "%c", get_op(node->value.op_value));  \
                                                             }                                                   \
                                                             else if(node->type == VAR)                          \
                                                             {                                                   \

@@ -10,6 +10,7 @@
 #include <tree_debug.h>
 #include <diff_funcs.h>
 #include <general_debug.h>
+#include <dsl.h>
 
 static int del_new_line_sym(Buffer *buffer);
 
@@ -20,6 +21,8 @@ static int create_node_if_need(char cur_sym, Node* node, Buffer *buff);
 static int exit_node_if_need(char cur_sym, Buffer *buff);
 
 static Node *diff_node_ctor(Type_of_expression type, const void *value);
+
+static Operation get_operation(const char * buffer);
 
 static FILE* SRC = 0;
 
@@ -135,10 +138,11 @@ static int input_val_type(Node *node, Buffer *buff)
 {
     int cur_sym = buff->buffer[buff->curr_index];
     int cur_pos = buff->curr_index;
-
-    if (isalpha(cur_sym))
-    {
+                                                                                                //todo dint check twice
+    if (isalpha(cur_sym) && (NOT_OP == get_operation(buff->buffer + cur_pos)))
+    {   
         node->value.var_value = cur_sym;
+        node->priority = VAR_PRIOR;
         
         buff->curr_index++;
         node->type = VAR;
@@ -147,32 +151,18 @@ static int input_val_type(Node *node, Buffer *buff)
     {
         int shift = 0;
         node->type = NUM;
+        node->priority = NUM_PRIOR;
 
         sscanf(buff->buffer + cur_pos, "%lf%n", &(node->value.dbl_value), &shift);
     
         buff->curr_index += shift;
     }
-    else
+    else if (NOT_OP != get_operation(buff->buffer + cur_pos))
     {
         node->type = OP;
 
-        int shift = 0;
-        if (cur_sym == '+')
-        {
-            node->value.op_value = ADD;
-        }
-        else if (cur_sym == '-')
-        {
-            node->value.op_value = SUB;
-        }
-        else if (cur_sym == '*')
-        {
-            node->value.op_value = MUL;
-        }
-        else if (cur_sym == '/')
-        {
-            node->value.op_value = DIV;
-        }
+        node->value.op_value = get_operation(buff->buffer + cur_pos);
+        node->priority = find_op_priority(node->value.op_value);
         
         buff->curr_index++;
     }
@@ -211,12 +201,10 @@ Node *diff_connect_node(Node *parent, Node *new_node)
     
     if (parent->l_son == NULL)                 
     {                 
-        //                  
         parent->l_son = new_node;       
     }                                   
     else if(parent->r_son == NULL)             
-    {       
-        //                            
+    {                                
         parent->r_son = new_node;       
     }                                   
     else    SOFT_ASS_NO_RET(1);
@@ -239,7 +227,6 @@ Node *diff_node_ctor(Type_of_expression type, const void *v_value)
     else if (type == NUM)                                           
      {   
         double *value = (double*) v_value; 
-
         return _diff_node_ctor(type, *value, NOT_OP, ' ');       
      }
 
@@ -255,14 +242,17 @@ Node *_diff_node_ctor(Type_of_expression type, double dbl_value, Operation op_va
 
     if (dbl_value != NAN)
     {
+        node->priority = NUM_PRIOR;
         node->value.dbl_value = dbl_value;
     }
     else if (op_value != NOT_OP)
     {
+        node->priority = find_op_priority(op_value);
         node->value.op_value = op_value;
     }
     else if(var_value != ' ')
     {
+        node->priority = VAR_PRIOR;
         node->value.var_value = var_value;
     }
     else SOFT_ASS_NO_RET(1);
@@ -274,7 +264,6 @@ Node *diff_diff(Node *node)
 {
     Type_of_expression type = node->type;
     Node *new_node = 0;
-    printf("type = %d\n", type);
     switch(type)
     {
         case NUM:
@@ -296,46 +285,19 @@ Node *diff_diff(Node *node)
             {
                 case ADD:
                 {   
-                    Diff_ADD(new_node)
-
-                    return new_node;
-                    break;
+                    return Diff_ADD(node, ADD);
                 }
                 case SUB:
                 {   
-                    Diff_SUB(new_node);
-
-                    return new_node;
-                    break;
+                    return Diff_ADD(node, SUB);;
                 }
                 case MUL:
                 {   
-                    Diff_MUL(new_node, ADD);
-
-                    return new_node;
-                    break;
+                    return Diff_MUL(node, ADD);
                 }
                 case DIV:
                 {   
-                    Node *l_node = 0;
-                    Node *r_node = 0;
-
-                    Create_OP_new_node(new_node, DIV);
-                    Create_OP_new_node(r_node, MUL);
-                    Diff_MUL(l_node, SUB)
-                    
-                    node_connect(new_node, l_node, LEFT);
-                    node_connect(new_node, r_node, RIGHT);
-                    
-                    Node *rr_node = CR;
-                    Node *rl_node = CR;
-
-                    node_connect(r_node, rl_node, LEFT);
-                    node_connect(r_node, rr_node, RIGHT);
-
-                    DBG;
-                    return new_node;
-                    break;
+                    return Diff_DIV(node, SUB); 
                 }
             }
             break;
@@ -344,28 +306,57 @@ Node *diff_diff(Node *node)
     return 0;
 }
 
-#if 0
-node_connect(new_node, l_node, LEFT);
-                    node_connect(new_node, r_node, RIGHT);
+Priorities find_op_priority(Operation operation)
+{   
+    switch(operation)
+    {
+        case ADD:
+            return ADD_PRIOR;
+        case SUB:
+            return SUB_PRIOR;
+        case MUL:
+            return MUL_PRIOR;
+        case DIV:
+            return DIV_PRIOR;
+        case DEGREE:
+            return DEGREE_PRIOR;
+        default:    
+        {
+            SOFT_ASS_NO_RET(1);
+            return ERROR_PRIOR;
+        }
+    }
 
-                    Node *ll_node = 0;
-                    Node *lr_node = 0;
+    return ERROR_PRIOR;
+}
 
-                    Create_OP_new_node(ll_node, MUL);
-                    Create_OP_new_node(lr_node, MUL);
+static Operation get_operation(const char *buff)
+{
+    char op_sym = buff[0];
 
-                    node_connect(l_node, ll_node, LEFT);
-                    node_connect(l_node, lr_node, RIGHT);
+    if (strstr(buff, "ln") == buff)
+        return LN;
+    else if (strstr(buff, "sin") == buff)
+        return SIN;
+    else if (strstr(buff, "cos") == buff)
+        return COS;
+    else if (strstr(buff, "tg") == buff)
+        return TG;
 
-                    Node *llr_node = CR;                
-                    Node *lrl_node = CL;                
-                    Node *lll_node = DL;                
-                    Node *lrr_node = DR;
-                    
-                    node_connect(ll_node, lll_node, LEFT);    
-                    node_connect(ll_node, llr_node, RIGHT);   
-                                                            
-                    node_connect(lr_node, lrl_node, LEFT);    
-                    node_connect(lr_node, lrr_node, RIGHT);  
 
-#endif
+    switch (op_sym)
+    {
+        case '+':
+            return ADD;
+        case '-':
+            return SUB;
+        case '*':
+            return MUL;
+        case '/':
+            return DIV;
+        case '^':
+            return DEGREE;   
+    }
+    
+    return NOT_OP;
+}

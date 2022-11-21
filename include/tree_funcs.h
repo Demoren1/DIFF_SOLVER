@@ -29,7 +29,12 @@ typedef enum
     ADD     = 1,
     SUB     = 2,
     MUL     = 3,
-    DIV     = 4
+    DIV     = 4,
+    DEGREE  = 5,
+    LN      = 6,
+    SIN     = 7,
+    COS     = 8,
+    TG      = 9
 } Operation;
 
 union Value
@@ -38,6 +43,18 @@ union Value
     Operation op_value;
     char var_value;
 };
+
+typedef enum 
+{   
+    ERROR_PRIOR     = -1,
+    NUM_PRIOR       = 0,
+    VAR_PRIOR       = 0,
+    ADD_PRIOR       = 1,
+    SUB_PRIOR       = 1,
+    MUL_PRIOR       = 2,
+    DIV_PRIOR       = 3,
+    DEGREE_PRIOR    = 4,
+} Priorities;
 
 typedef struct Node_t
 {    
@@ -49,6 +66,8 @@ typedef struct Node_t
     Node_t *l_son;
     Node_t *r_son;
     Pos_of_node pos;
+
+    Priorities priority;
 
 } Node;
 

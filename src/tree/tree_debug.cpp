@@ -56,7 +56,7 @@ int tree_dump(Node *node, Mode_of_print mode,  const char* name_function, const 
                         name_file, name_function, num_line, name_variable);
     fprintf(TREE_LOGS, "$$ ");
     tree_print(node, mode);
-    fprintf(TREE_LOGS, " $$");
+    fprintf(TREE_LOGS, " $$\n\n");
 
     return 0;
 
@@ -70,29 +70,31 @@ int tree_print(const Node *node, const Mode_of_print mode)
         return 0;
     }
 
-    fprintf(TREE_LOGS,"(");
+    if (node->parent && node->priority && node->parent->priority > node->priority)
+    {
+        fprintf(TREE_LOGS, "(");
+    }
+    // fprintf(TREE_LOGS,"(");
     PRINT_DIFF_IN_LOG_IF(mode == PREORDER, node);
 
     if(node->l_son)
         {   
             tree_print(node->l_son, mode);
         }
-    // else    fprintf(TREE_LOGS, " (VOID) ");
-
     PRINT_DIFF_IN_LOG_IF(mode == INORDER, node);
-
-    // printf("%x  %x  %x\n", node->dbl_value, node->op_value, node->var_value);
 
     if (node->r_son)
     {
         tree_print(node->r_son, mode);
     }
     
-    // else    fprintf(TREE_LOGS, " (VOID) ");
-
     PRINT_DIFF_IN_LOG_IF(mode == POSTORDER, node);
     
-    fprintf(TREE_LOGS,")");
+    if (node->parent && node->priority && node->parent->priority > node->priority)
+    {
+        fprintf(TREE_LOGS, ")");
+    }
+    // fprintf(TREE_LOGS,")");
 
     fflush(TREE_LOGS);
     return 0;
@@ -184,6 +186,7 @@ int tree_print_graph(const Node *node)
         }
         default: SOFT_ASS_NO_RET(1);
     }
+    fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"#c0fae8 \"><font color=\"black\">priority = %d</font></td></tr>\n", node->priority);
 
     fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightgreen\"><font color=\"black\">cur_address = %p</font></td></tr>\n"
                         
@@ -272,6 +275,10 @@ static char get_op(Operation operation)
         case DIV:
         {
             return '/';
+        }
+        case DEGREE:
+        {
+            return '^';
         }
         default:
         {
