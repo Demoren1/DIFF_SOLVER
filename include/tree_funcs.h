@@ -52,7 +52,7 @@ typedef enum
     ADD_PRIOR       = 1,
     SUB_PRIOR       = 1,
     MUL_PRIOR       = 2,
-    DIV_PRIOR       = 2,
+    DIV_PRIOR       = 3,
     DEGREE_PRIOR    = 5,
     UNAR_OP_PRIOR   = 10
 } Priorities;

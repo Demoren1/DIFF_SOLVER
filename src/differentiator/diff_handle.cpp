@@ -171,7 +171,7 @@ static int input_val_type(Node *node, Buffer *buff)
         node->value.op_value = get_operation(buff->buffer + cur_pos);
         node->priority = find_op_priority(node->value.op_value);
         int len = len_op(buff->buffer + cur_pos);
-        printf("len = %d\n", len);
+
         buff->curr_index += len;
     }
 
@@ -219,7 +219,7 @@ Node *diff_connect_node(Node *parent, Node *new_node)
 
     return new_node;
 }
-
+#if 0
 Node *diff_node_ctor(Type_of_expression type, const void *v_value)
 {   
     if (type == OP)
@@ -268,6 +268,8 @@ Node *_diff_node_ctor(Type_of_expression type, double dbl_value, Operation op_va
     return node;   
 }
 
+#endif
+
 Node *diff_diff(Node *node)
 {
     Type_of_expression type = node->type;
@@ -277,14 +279,12 @@ Node *diff_diff(Node *node)
         case NUM:
         {   
             double value = 0;
-            return diff_node_ctor(NUM, &value);
-            break;
+            return Create_NUM_node(value);
         }
         case VAR:
         {   
             double value = 1;
-            return diff_node_ctor(NUM, &value);
-            break;
+            return Create_NUM_node(value);
         }
         case OP:
         {
