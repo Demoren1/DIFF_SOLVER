@@ -1,6 +1,7 @@
 all : mkdir diff
 SRC_DIFF_DIR = ./src/differentiator/
 SRC_TREE_DIR = ./src/tree/
+SRC_CALC_DIR = ./src/calcul/
 OBJ_DIR = ./obj/
 DUMP_DIR = ./graph_dumps/
 CC = g++
@@ -25,22 +26,29 @@ INCLUDE_PATH = -I./include/
 #sources
 DIFF_SRC := $(wildcard $(SRC_DIFF_DIR)*.cpp)
 TREE_SRC := $(wildcard $(SRC_TREE_DIR)*.cpp)
+CALC_SRC := $(wildcard $(SRC_CALC_DIR)*.cpp)
+
 
 #obj
 DIFF_OBJ  := $(patsubst $(SRC_DIFF_DIR)%.cpp, $(OBJ_DIR)%.o, $(DIFF_SRC)) 
 TREE_OBJ  := $(patsubst $(SRC_TREE_DIR)%.cpp, $(OBJ_DIR)%.o, $(TREE_SRC)) 
+CALC_OBJ  := $(patsubst $(SRC_CALC_DIR)%.cpp, $(OBJ_DIR)%.o, $(CALC_SRC)) 
+
 
 
 #exe
 DIFF_EXE := diff
 
-$(DIFF_EXE) : $(DIFF_OBJ) $(TREE_OBJ)
-	@$(CC) $(CFLAGS) $(INCLUDE_PATH) $(DIFF_OBJ) $(TREE_OBJ) -o $(DIFF_EXE)
+$(DIFF_EXE) : $(DIFF_OBJ) $(TREE_OBJ) $(CALC_OBJ)
+	@$(CC) $(CFLAGS) $(INCLUDE_PATH) $(DIFF_OBJ) $(TREE_OBJ) $(CALC_OBJ) -o $(DIFF_EXE)
 
 $(OBJ_DIR)%.o : $(SRC_DIFF_DIR)%.cpp 
 	@$(CC) $(INCLUDE_PATH) -c $< -o $@
 
 $(OBJ_DIR)%.o : $(SRC_TREE_DIR)%.cpp 
+	@$(CC) $(INCLUDE_PATH) -c $< -o $@
+
+$(OBJ_DIR)%.o : $(SRC_CALC_DIR)%.cpp 
 	@$(CC) $(INCLUDE_PATH) -c $< -o $@
 
 mkdir :

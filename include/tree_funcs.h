@@ -46,14 +46,15 @@ union Value
 
 typedef enum 
 {   
-    ERROR_PRIOR     = -1,
-    NUM_PRIOR       = 0,
-    VAR_PRIOR       = 0,
+    ERROR_PRIOR     = -999,
+    NUM_PRIOR       = 1,
+    VAR_PRIOR       = 1,
     ADD_PRIOR       = 1,
     SUB_PRIOR       = 1,
     MUL_PRIOR       = 2,
-    DIV_PRIOR       = 3,
-    DEGREE_PRIOR    = 4,
+    DIV_PRIOR       = 2,
+    DEGREE_PRIOR    = 5,
+    UNAR_OP_PRIOR   = 10
 } Priorities;
 
 typedef struct Node_t
@@ -93,6 +94,9 @@ int tree_show_graph();
 Node* node_copy_node(Node *node);
 
 int node_copy_data(Node *new_node, Node *old_node);
+
+int node_switch_sons(Node *node);
+
 #endif
 
 

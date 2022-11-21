@@ -20,9 +20,13 @@ static int create_node_if_need(char cur_sym, Node* node, Buffer *buff);
 
 static int exit_node_if_need(char cur_sym, Buffer *buff);
 
+static int switch_sons_if_need(Node *node);
+
 static Node *diff_node_ctor(Type_of_expression type, const void *value);
 
 static Operation get_operation(const char * buffer);
+
+static int len_op(const char *operation);
 
 static FILE* SRC = 0;
 
@@ -99,7 +103,7 @@ int diff_do_tree(Node *node, Buffer *buff)
 {   
     char cur_sym = buff->buffer[buff->curr_index];
     int cur_pos = buff->curr_index;
-    
+
     if (node->parent == NULL)
     {
         input_val_type(node, buff);
@@ -116,6 +120,7 @@ int diff_do_tree(Node *node, Buffer *buff)
 
     if (exit_node_if_need(cur_sym, buff))
     {
+        switch_sons_if_need(node);
         return 0;
     }
     
@@ -128,9 +133,11 @@ int diff_do_tree(Node *node, Buffer *buff)
 
     if (exit_node_if_need(cur_sym, buff))
     {
+        switch_sons_if_need(node);
         return 0;
     }
 
+    switch_sons_if_need(node);
     return 0;
 }
 
@@ -160,11 +167,12 @@ static int input_val_type(Node *node, Buffer *buff)
     else if (NOT_OP != get_operation(buff->buffer + cur_pos))
     {
         node->type = OP;
-
+        
         node->value.op_value = get_operation(buff->buffer + cur_pos);
         node->priority = find_op_priority(node->value.op_value);
-        
-        buff->curr_index++;
+        int len = len_op(buff->buffer + cur_pos);
+        printf("len = %d\n", len);
+        buff->curr_index += len;
     }
 
     return 0;
@@ -320,6 +328,11 @@ Priorities find_op_priority(Operation operation)
             return DIV_PRIOR;
         case DEGREE:
             return DEGREE_PRIOR;
+        case LN:
+        case COS:
+        case SIN:
+        case TG:
+            return UNAR_OP_PRIOR;
         default:    
         {
             SOFT_ASS_NO_RET(1);
@@ -359,4 +372,39 @@ static Operation get_operation(const char *buff)
     }
     
     return NOT_OP;
+}
+
+static int len_op(const char *operation)
+{
+    int index = 0;
+    
+    if (!isalpha(*operation))
+        return 1;
+    else
+    {
+        while (isalpha(*(operation + index)))
+            index++;
+    }
+
+    return index;
+}
+
+static int switch_sons_if_need(Node *node)
+{
+    if (node->type != OP)
+        return 0;
+
+    switch (node->value.op_value)
+    {
+        case LN:
+        case COS:
+        case SIN:
+        case TG:
+        {
+            node_switch_sons(node);
+            DBG;
+        }
+    }
+
+    return 0;
 }

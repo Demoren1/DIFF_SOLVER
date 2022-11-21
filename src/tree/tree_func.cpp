@@ -161,3 +161,17 @@ int node_copy_data(Node *new_node, Node *old_node)
 
     return 0;
 }
+
+int node_switch_sons(Node *node)
+{
+    if (node == NULL)
+        return 0;
+
+    Node *tmp_node = 0;
+
+    tmp_node = node->l_son;
+    node->l_son = node->r_son;
+    node->r_son = tmp_node;
+
+    return 0;
+}

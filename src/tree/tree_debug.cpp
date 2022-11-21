@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <math.h>
@@ -12,7 +13,7 @@ static FILE *TREE_LOGS = 0;
 static FILE *HTM_LOGS  = 0;
 static FILE *TREE_GRAPH_LOGS = 0;
 
-static char get_op(Operation operation);
+static int get_op(Operation operation, char res[]);
 
 int open_tree_logs()
 {
@@ -74,7 +75,7 @@ int tree_print(const Node *node, const Mode_of_print mode)
     {
         fprintf(TREE_LOGS, "(");
     }
-    // fprintf(TREE_LOGS,"(");
+
     PRINT_DIFF_IN_LOG_IF(mode == PREORDER, node);
 
     if(node->l_son)
@@ -94,7 +95,6 @@ int tree_print(const Node *node, const Mode_of_print mode)
     {
         fprintf(TREE_LOGS, ")");
     }
-    // fprintf(TREE_LOGS,")");
 
     fflush(TREE_LOGS);
     return 0;
@@ -180,8 +180,10 @@ int tree_print_graph(const Node *node)
         }
         case OP:
         {   
-            fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightblue\"><font color=\"#0000ff\"> %c </font></td></tr>\n", 
-            get_op(node->value.op_value));
+            char res[MAX_LEN_OP] = {};
+            get_op(node->value.op_value, res);
+            fprintf(TREE_GRAPH_LOGS, "    <tr><td bgcolor=\"lightblue\"><font color=\"#0000ff\"> %s </font></td></tr>\n", 
+                                    res);
             break;
         }
         default: SOFT_ASS_NO_RET(1);
@@ -252,37 +254,66 @@ int print_in_logs(const char *str,...)
     return 0;
 }
 
-static char get_op(Operation operation)
+static int get_op(Operation operation, char res[])
 {
     switch(operation)
     {   
-        case NOT_OP:
+        case LN:
         {
-            return 'V';
+            strncpy(res, "ln", MAX_LEN_OP);
+            break;
+        }
+        case SIN:
+        {
+            strncpy(res, "sin", MAX_LEN_OP);
+            break;
+        }
+        case COS:
+        {
+            strncpy(res, "cos", MAX_LEN_OP);
+            break;
+        }
+        case TG:
+        {
+            strncpy(res, "tg", MAX_LEN_OP);
+            break;
+        }
+        case NOT_OP:
+        {   
+            strncpy(res, "V", MAX_LEN_OP);
+            break;
         }
         case ADD:
         {
-            return '+';
+            strncpy(res, "+", MAX_LEN_OP);
+            break;
         }
         case SUB:
         {
-            return '-';
+            strncpy(res, "-", MAX_LEN_OP);
+            break;
         }
         case MUL:
         {
-            return '*';
+            strncpy(res, "*", MAX_LEN_OP);
+            break;
         }
         case DIV:
         {
-            return '/';
+            strncpy(res, "/", MAX_LEN_OP);
+            break;
         }
         case DEGREE:
         {
-            return '^';
+            strncpy(res, "^", MAX_LEN_OP);
+            break;
         }
         default:
         {
-            return 'E';
+            strncpy(res, "ERROR", MAX_LEN_OP);
+            break;
         }
     }
+
+    return 0;
 }
