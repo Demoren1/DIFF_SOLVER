@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include <assert.h>
 #include <ctype.h>
+#include <math.h>
 #include <calcul_funcs.h>
 #include <general_debug.h>
 const char* s = NULL;
 
-int get_G(const char *str)
+int get_General(const char *str)
 {
     s = str;
 
-    int val = get_E();
+    int val = get_Expression();
 
     assert(*s == '\0');
 
     return val;
 } 
 
-int get_N()
+int get_Num()
 {
     int val = 0;
     const char *old_s = s;
@@ -39,13 +40,13 @@ int get_P()
     if (*s == '(')
     {
         s++;
-        val = get_E();
+        val = get_Expression();
         assert (*s == ')');
         s++;
     }
     else
     {
-        val = get_N();
+        val = get_Num();
     }
 
     return val;
@@ -54,14 +55,14 @@ int get_P()
 int get_T()
 {
     int val = 0;
-    val = get_P();
+    val = get_Degree();
 
     while(*s == '*' || *s == '/')
     {
         int op = *s;
 
         s++;
-        int val2 = get_P();
+        int val2 = get_Degree();
         
         if (op == '*')
             val *= val2;
@@ -72,7 +73,7 @@ int get_T()
     return val;
 }
 
-int get_E()
+int get_Expression()
 {
     int val = 0;
     val = get_T();
@@ -89,6 +90,23 @@ int get_E()
          
         else 
             val -= val2;
+    }
+
+    return val;
+}
+
+int get_Degree()
+{
+    int val = 0;
+
+    val = get_P();
+
+    while(*s == '^')
+    {
+        s++;
+        int val2 = get_P();
+
+        val = pow(val, val2);
     }
 
     return val;

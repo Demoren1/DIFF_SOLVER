@@ -35,6 +35,12 @@ Node *Diff_DEGREE(Node *node);
 
 Node *Diff_LN(Node *node);
 
+Node *Diff_SIN(Node *node);
+
+Node *Diff_COS(Node *node);
+
+Node *Diff_TG(Node *node);
+
 Node *Create_OP_node(Operation oper_value);
 
 Node *Create_NUM_node(double dbl_value);

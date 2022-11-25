@@ -283,7 +283,7 @@ int wrap_equivalents(Node *node)
     
     Pos_of_node one_side = find_one_side(node);
     if (one_side != NOT_SIDE)
-    {           
+    {   
         changes += kill_one_side(one_side, node);
     }
 
@@ -307,8 +307,6 @@ static int kill_one_side(Pos_of_node one_side, Node *node)
     Node *parent = node->parent;
     Node *tmp_node = node;
     int changes = 0;
-    int node_pos = node->pos;
-
     int fake_parent_flag = 0;
 
     if (one_side == LEFT)
@@ -324,7 +322,7 @@ static int kill_one_side(Pos_of_node one_side, Node *node)
 
     if (conjugate_node == NULL)
         return changes;
-    
+
     Operation oper = node->value.op_value;    
     
     if (!node->parent)
@@ -341,13 +339,16 @@ static int kill_one_side(Pos_of_node one_side, Node *node)
     {   
         changes++;        
         if (!fake_parent_flag)
+        {
+            
             node_connect(parent, node_copy_node(conjugate_node), node->pos);
+            
+        }
         else
         {
             tmp_node = node_copy_node(conjugate_node);
             node_disconnect(node, LEFT, 1);
             node_disconnect(node, RIGHT, 1);
-            
             node_copy_data(node, tmp_node);
             
             node_dtor(tmp_node);
@@ -358,13 +359,15 @@ static int kill_one_side(Pos_of_node one_side, Node *node)
     {
         changes++;
         if (!fake_parent_flag)
+        {
+            
             node_connect(parent, Create_NUM_node(1), node->pos);
+        }
         else
         {
             tmp_node = Create_NUM_node(1);
             node_disconnect(node, LEFT, 1);
             node_disconnect(node, RIGHT, 1);
-            
             node_copy_data(node, tmp_node);
             
             node_dtor(tmp_node);
@@ -376,9 +379,9 @@ static int kill_one_side(Pos_of_node one_side, Node *node)
     {
         node_dtor(node);
     }
-    else if (node->pos > 0)
+    else if (node->pos > 0 && parent)
     {
-        node_connect(parent, node, node->pos);
+        node_connect(parent, node, node->pos);   
     }
     
     return changes;    
@@ -391,7 +394,7 @@ static int kill_zero_side(Pos_of_node zero_side, Node *node)
     Node *conjugate_node = 0;
     Node *parent = node->parent;
     Node *tmp_node = node;
-
+    int changes = 0;
     int fake_parent_flag = 0;
 
     if (zero_side == LEFT)
@@ -413,13 +416,14 @@ static int kill_zero_side(Pos_of_node zero_side, Node *node)
     if (!node->parent)
         fake_parent_flag = 1;
 
-    if (!fake_parent_flag)
+    if (!fake_parent_flag && node->pos > 0)
+    {   
         node_disconnect(parent, node->pos, 0);
-    else ;
-
+    }
 
     if (oper == ADD || oper == SUB)
     {   
+        changes++;
         if (!fake_parent_flag)
             node_connect(parent, node_copy_node(conjugate_node), node->pos);
         else
@@ -431,12 +435,13 @@ static int kill_zero_side(Pos_of_node zero_side, Node *node)
             node_copy_data(node, tmp_node);
             
             node_dtor(tmp_node);
-            return 0;
+            return changes;
         }
     }
 
     else if (oper == MUL || (zero_side == LEFT && oper == DEGREE) ||(zero_side == LEFT && oper == DIV))
-    {
+    {   
+        changes++;
         if (!fake_parent_flag)
             node_connect(parent, Create_NUM_node(0), node->pos);
         else
@@ -453,6 +458,7 @@ static int kill_zero_side(Pos_of_node zero_side, Node *node)
 
     else if (zero_side == RIGHT && oper == DEGREE)
     {   
+        changes++;
         if (!fake_parent_flag)
             node_connect(parent, Create_NUM_node(0), node->pos);
         else
@@ -468,22 +474,29 @@ static int kill_zero_side(Pos_of_node zero_side, Node *node)
     }
 
 
-    if (!fake_parent_flag)
+    if (!fake_parent_flag && changes != 0)
     {
         node_dtor(node);
     }
+    else if (node->pos > 0 && parent)
+    {
+        node_connect(parent, node, node->pos);
+    }
     
-    return 0;    
+    return changes++;    
 }
 
 
 static Pos_of_node find_one_side(Node *node)
 {
-    if (NL && NL->type == NUM && NLV.dbl_value == 1)
+    if (NL && NR && NL->type == NUM && NLV.dbl_value == 1)
         return LEFT;
 
-    if (NR && NR->type == NUM && NRV.dbl_value == 1)
+    if (NR && NL && NR->type == NUM && NRV.dbl_value == 1)
+    {   
         return RIGHT;
+    }
+    
 
     return NOT_SIDE; 
 }
@@ -656,6 +669,12 @@ Node *diff_diff(Node *node)
                     return Diff_DEGREE(node);
                 case LN:
                     return Diff_LN(node);
+                case COS:
+                    return Diff_COS(node);
+                case SIN:
+                    return Diff_SIN(node);
+                case TG:
+                    return Diff_TG(node);
             }
             break;
         }

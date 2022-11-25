@@ -91,7 +91,17 @@ Node *Diff_LN(Node *node)
 
 Node* Diff_SIN(Node *node)
 {
-    return MUL_OP(COS_OP(NULL, NR), DR);
+    return MUL_OP(COS_OP(NULL, CR), DR);
+}
+
+Node* Diff_COS(Node *node)
+{
+    return MUL_OP( MUL_OP(Create_NUM_node(-1),SIN_OP(NULL, CR)), DR);
+}
+
+Node *Diff_TG(Node *node)
+{
+    return MUL_OP(DIV_OP(Create_NUM_node(1), DEGREE_OP(COS_OP(NULL, CR), Create_NUM_node(2))), DR);
 }
 
 #if 0
