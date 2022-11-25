@@ -53,7 +53,7 @@ int tree_dump(Node *node, Mode_of_print mode,  const char* name_function, const 
 {
     fprintf(TREE_LOGS,  "Dump called from %s file, in %s func, in %d line, name of variable = %s\n\n",
                          name_file, name_function, num_line, name_variable);    
-    fprintf(HTM_LOGS,   "Dump called from %s file, in %s func, in %d line, name of variable = %s\n\n",
+    fprintf(HTM_LOGS,   "<h2> Dump called from %s file, in %s func, in %d line, name of variable = %s\n\n",
                         name_file, name_function, num_line, name_variable);
     fprintf(TREE_LOGS, "$$ ");
     tree_print(node, mode);

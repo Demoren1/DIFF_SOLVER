@@ -11,9 +11,10 @@ const int LEN_OF_DATA = 256;
 #define POISON "POISON"
 
 typedef enum 
-{
-    LEFT = 1,
-    RIGHT = 2
+{   
+    NOT_SIDE    = -1,
+    LEFT        = 1,
+    RIGHT       = 2
 }Pos_of_node;
 
 typedef enum 
@@ -83,6 +84,8 @@ Node *node_ctor();
 
 Node* node_connect(Node *parent, Node *node, Pos_of_node pos);
 
+Node *node_disconnect (Node *parent, Pos_of_node pos, int dtor_flag);
+
 Node* node_ctor_connect(Node *parent, Pos_of_node pos);
 
 int node_dtor(Node *node);
@@ -96,6 +99,7 @@ Node* node_copy_node(Node *node);
 int node_copy_data(Node *new_node, Node *old_node);
 
 int node_switch_sons(Node *node);
+
 
 #endif
 

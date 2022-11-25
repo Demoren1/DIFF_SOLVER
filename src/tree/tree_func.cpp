@@ -72,7 +72,43 @@ Node* node_connect(Node *parent, Node *node, Pos_of_node pos)
     return node;
 }
 
-int node_dtor(Node* node)
+Node *node_disconnect(Node *parent, Pos_of_node pos, int dtor_flag)
+{
+    SOFT_ASS_NO_RET(parent == NULL);
+
+     switch (pos)       
+    {
+        case LEFT:
+        {   
+            if (parent->l_son == NULL)
+                break;
+            
+            parent->l_son->parent = NULL;
+            if (dtor_flag) node_dtor(parent->l_son);
+            parent->l_son = NULL;            
+            break;
+        }
+        case RIGHT:
+        {   
+            if (parent->r_son == NULL)
+                break;
+
+            parent->r_son->parent = NULL;
+            if (dtor_flag) node_dtor(parent->r_son);
+            parent->r_son = NULL;            
+
+            break;
+        }
+
+        default:
+            printf("You make a mistake in input of pos\n");
+            break;
+    }
+
+    return parent;
+}
+
+int node_dtor(Node *node)
 {
     SOFT_ASS(node == NULL);
 
@@ -87,7 +123,7 @@ int node_dtor(Node* node)
         node_dtor(node->r_son);
         node->r_son = NULL;
     }
-    
+
     free(node);
     node = NULL;
 
@@ -125,19 +161,7 @@ Node *node_copy_node(Node *node)
 
     Node *new_node = node_ctor();
     node_copy_data(new_node, node);
-
-    if (node->l_son)
-    {
-        new_node->l_son = node_copy_node(node->l_son);
-        new_node->l_son->parent = new_node;
-
-    }
-    if (node->r_son)
-    {
-        new_node->r_son = node_copy_node(node->r_son);
-        new_node->r_son->parent = new_node;
-    }
-
+    
     return new_node;
 }
 
@@ -158,6 +182,18 @@ int node_copy_data(Node *new_node, Node *old_node)
     new_node->priority = old_node->priority;
     new_node->type = old_node->type;
     new_node->pos = old_node->pos;
+    
+
+    if (old_node->l_son)
+    {
+        node_ctor_connect(new_node, LEFT);
+        node_copy_data(new_node->l_son, old_node->l_son);
+    }
+    if (old_node->r_son)
+    {
+        node_ctor_connect(new_node, RIGHT);
+        node_copy_data(new_node->r_son, old_node->r_son);
+    }
 
     return 0;
 }

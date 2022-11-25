@@ -25,6 +25,8 @@ Node *diff_connect_node(Node *parent, Node *new_node);
 
 Node *diff_diff(Node *node);
 
+int diff_simplify(Node *node);
+
 Priorities find_op_priority(Operation operation);
 
 #endif

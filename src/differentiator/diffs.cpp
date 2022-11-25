@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <tree_funcs.h>
 #include <diff_funcs.h>
 #include <dsl.h>
@@ -50,6 +51,18 @@ Node *DIV_OP(Node *l_node, Node *r_node)
 Node *DEGREE_OP(Node *l_node, Node *r_node)
 {LINK_WITH_OP(DEGREE);}
 
+Node *LN_OP(Node *l_node, Node *r_node)
+{LINK_WITH_OP(LN);}
+
+Node *COS_OP(Node *l_node, Node *r_node)
+{LINK_WITH_OP(COS);}
+
+Node *SIN_OP(Node *l_node, Node *r_node)
+{LINK_WITH_OP(SIN);}
+
+Node *TG_OP(Node *l_node, Node *r_node)
+{LINK_WITH_OP(TG);}
+
 Node *Diff_ADD(Node *node, Operation oper_value)
 {
     return ADD_OP(DL, DR);
@@ -66,29 +79,21 @@ Node *Diff_DIV(Node *node, Operation oper_value)
     return DIV_OP(SUB_OP(MUL_OP(DL, CR), MUL_OP(DR, CL)), MUL_OP(CR, CR));
 }
 
-#if 0
-
-Node *Diff_DIV(Node *node, Operation oper_value)
-{
-    Node *new_node = 0;
-
-    Node *l_node = 0;                       
-    Node *r_node = 0;                       
-                                            
-    Create_OP_node(new_node, DIV);      
-    Create_OP_node(r_node, MUL);     
-    l_node = Diff_MUL(node, oper_value);
-                                            
-    node_connect(new_node, l_node, LEFT);   
-    node_connect(new_node, r_node, RIGHT);  
-                                            
-    Node *rr_node = CR;                     
-    Node *rl_node = CR;                     
-                                            
-    node_connect(r_node, rl_node, LEFT);    
-    node_connect(r_node, rr_node, RIGHT);
-
-    return new_node;
+Node *Diff_DEGREE(Node *node)
+{   
+    return MUL_OP(DEGREE_OP(CL, CR),ADD_OP(MUL_OP(DR, LN_OP(NULL, CL)), MUL_OP(MUL_OP(DIV_OP(Create_NUM_node(1), CL), DL), CR)));
 }
+ 
+Node *Diff_LN(Node *node)
+{
+    return MUL_OP(DIV_OP(Create_NUM_node(1), CR), DR);
+}
+
+Node* Diff_SIN(Node *node)
+{
+    return MUL_OP(COS_OP(NULL, NR), DR);
+}
+
+#if 0
 
 #endif 

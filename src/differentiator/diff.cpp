@@ -33,11 +33,11 @@ int main()
     // printf("str = %s\n", str);
     // printf("result = %d\n", get_G(str));
 
-    TREE_DUMP(cool_node, INORDER);
+    diff_simplify(cool_node);
 
     Node *diff_cool_node = diff_diff(cool_node);
-
-    TREE_DUMP(diff_cool_node, INORDER);
+        
+    diff_simplify(diff_cool_node);
 
     node_dtor(cool_node);
     node_dtor(diff_cool_node);
