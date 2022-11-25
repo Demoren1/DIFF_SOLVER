@@ -10,8 +10,6 @@ int main()
     open_tree_logs();
 
     Tree tree = {};
-    // tree_ctor(&tree);
-
     Buffer buff = {};
 
     const char *src = "expression.txt";
@@ -23,18 +21,18 @@ int main()
     }
     puts(" ");
 
-    // diff_do_tree(tree.root, &buff);
     char *str = buff.buffer;
+    
+    printf("str = %s\n", buff.buffer);
     tree.root = get_General(str);
 
     Node *cool_node = node_copy_node(tree.root);
 
-
-    printf("str = %s\n", str);
-
     diff_simplify(cool_node);
 
-    Node *diff_cool_node = diff_diff(cool_node);
+    Node *diff_cool_node = diff_diff(cool_node, 'y');
+
+    
         
     diff_simplify(diff_cool_node);
 

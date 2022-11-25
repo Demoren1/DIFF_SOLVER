@@ -17,4 +17,6 @@ Node *get_Degree();
 
 Node *get_VAR();
 
+Node *get_UNAR_OP();
+
 #endif

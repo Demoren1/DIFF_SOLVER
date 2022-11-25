@@ -22,7 +22,7 @@ static int kill_zero_side(Pos_of_node zero_side, Node *node);
 
 static int kill_one_side(Pos_of_node zero_side, Node *node);
 
-static int del_new_line_sym(Buffer *buffer);
+static char* del_new_line_and_spaces(Buffer *buffer);
 
 static int input_val_type(Node *node, Buffer *buff);
 
@@ -35,8 +35,6 @@ static int switch_sons_if_need(Node *node);
 static double count_num(Node *node, Node *l_son, Node *r_son);
 
 static Node *diff_node_ctor(Type_of_expression type, const void *value);
-
-static Operation get_operation(const char * buffer);
 
 static int len_op(const char *operation);
 
@@ -62,7 +60,7 @@ int diff_handle_src(const char* path_to_file, Buffer *buff)
     test_fread = fread(buff->buffer, sizeof(char), buff->size, SRC);      
     SOFT_ASS(test_fread == 0);  
 
-    del_new_line_sym(buff);
+    buff->buffer = del_new_line_and_spaces(buff);
 
     buff->buffer[buff->size] = '\0';
     buff->curr_index = 0;
@@ -81,20 +79,31 @@ int diff_size_for_buffer(FILE *SRC, const char *path_to_file)
     return buf.st_size + 1;
 }
 
-static int del_new_line_sym(Buffer* buff)
+static char* del_new_line_and_spaces(Buffer* buff)
 {
-    SOFT_ASS(buff == NULL);
-    SOFT_ASS(buff->buffer == NULL);
+    SOFT_ASS_NO_RET(buff == NULL);
+    SOFT_ASS_NO_RET(buff->buffer == NULL);
 
-    for (int i = 0; i < buff->size; i++)
+    char *new_buff = (char*) calloc(buff->size, sizeof(char));
+
+    int index_buff = 0;
+    int index_new_buff = 0;
+    for (; index_buff < buff->size; index_buff++)
     {
-        if (buff->buffer[i] == '\n')
+        if (buff->buffer[index_buff] == '\n')
         {
-            buff->buffer[i] = '\0';
+            buff->buffer[index_buff] = '\0';
+        }
+
+        if (buff->buffer[index_buff] != ' ')
+        {   
+            new_buff[index_new_buff] = buff->buffer[index_buff];
+            index_new_buff++;
         }
     }
 
-    return 0;
+    free(buff->buffer);
+    return new_buff;
 }
 
 int diff_buff_dtor(Buffer *buffer)
@@ -113,142 +122,6 @@ int diff_buff_dtor(Buffer *buffer)
     return 0;
 }
 
-int diff_do_tree(Node *node, Buffer *buff)
-{   
-    char cur_sym = buff->buffer[buff->curr_index];
-    int cur_pos = buff->curr_index;
-
-    if (node->parent == NULL)
-    {
-        input_val_type(node, buff);
-        create_node_if_need(cur_sym, node, buff);
-    }
-
-    if(node->parent != NULL)
-        create_node_if_need(cur_sym, node, buff);
-
-    input_val_type(node, buff);
-
-    cur_sym = buff->buffer[buff->curr_index];
-    cur_pos = buff->curr_index;
-
-    if (exit_node_if_need(cur_sym, buff))
-    {
-        switch_sons_if_need(node);
-        return 0;
-    }
-    
-    create_node_if_need(cur_sym, node, buff);
-
-    input_val_type(node, buff);
-
-    cur_sym = buff->buffer[buff->curr_index];
-    cur_pos = buff->curr_index;
-
-    if (exit_node_if_need(cur_sym, buff))
-    {
-        switch_sons_if_need(node);
-        return 0;
-    }
-
-    switch_sons_if_need(node);
-    return 0;
-}
-
-static int input_val_type(Node *node, Buffer *buff)
-{
-    int cur_sym = buff->buffer[buff->curr_index];
-    int cur_pos = buff->curr_index;
-                                                                                                //todo dint check twice
-    if (isalpha(cur_sym) && (NOT_OP == get_operation(buff->buffer + cur_pos)))
-    {   
-        node->value.var_value = cur_sym;
-        node->priority = VAR_PRIOR;
-        
-        buff->curr_index++;
-        node->type = VAR;
-    }
-    else if(isdigit(cur_sym))
-    {
-        int shift = 0;
-        node->type = NUM;
-        node->priority = NUM_PRIOR;
-
-        sscanf(buff->buffer + cur_pos, "%lf%n", &(node->value.dbl_value), &shift);
-    
-        buff->curr_index += shift;
-    }
-    else if (NOT_OP != get_operation(buff->buffer + cur_pos))
-    {
-        node->type = OP;
-        
-        node->value.op_value = get_operation(buff->buffer + cur_pos);
-        node->priority = find_op_priority(node->value.op_value);
-        int len = len_op(buff->buffer + cur_pos);
-
-        buff->curr_index += len;
-    }
-
-    return 0;
-}
-
-static int create_node_if_need(char cur_sym, Node* node, Buffer *buff)
-{
-    if (cur_sym == '(')
-    {
-        buff->curr_index++;
-        Node *new_node1 = node_ctor();
-        diff_connect_node(node, new_node1);
-        diff_do_tree(new_node1, buff);
-    }
-
-    return 0;
-}
-
-static int exit_node_if_need(char cur_sym, Buffer *buff)
-{
-    if (cur_sym == ')')
-    {
-        buff->curr_index++;
-        return 1;
-    }
-
-    return 0;
-}
-
-
-Node *diff_connect_node(Node *parent, Node *new_node)
-{
-    new_node->parent = parent;
-    
-    if (parent->l_son == NULL)                 
-    {                 
-        parent->l_son = new_node;       
-    }                                   
-    else if(parent->r_son == NULL)             
-    {                                
-        parent->r_son = new_node;       
-    }                                   
-    else    SOFT_ASS_NO_RET(1);
-
-    return new_node;
-}
-
-
-static int len_op(const char *operation)
-{
-    int index = 0;
-    
-    if (!isalpha(*operation))
-        return 1;
-    else
-    {
-        while (isalpha(*(operation + index)))
-            index++;
-    }
-
-    return index;
-}
 
 int diff_simplify(Node *node)
 {
@@ -636,7 +509,7 @@ static int switch_sons_if_need(Node *node)
     return 0;
 }
 
-Node *diff_diff(Node *node)
+Node *diff_diff(Node *node, char var_for_diff)
 {
     Type_of_expression type = node->type;
     Node *new_node = 0;
@@ -649,8 +522,10 @@ Node *diff_diff(Node *node)
         }
         case VAR:
         {   
-            double value = 1;
-            return Create_NUM_node(value);
+            if (node->value.var_value == var_for_diff)            
+                return Create_NUM_node(1);
+            else
+                return Create_NUM_node(0);
         }
         case OP:
         {
@@ -658,23 +533,23 @@ Node *diff_diff(Node *node)
             switch (node->value.op_value)
             {
                 case ADD:
-                    return Diff_ADD(node, ADD);
+                    return Diff_ADD(node, ADD, var_for_diff);
                 case SUB:
-                    return Diff_ADD(node, SUB);;
+                    return Diff_ADD(node, SUB, var_for_diff);
                 case MUL:
-                    return Diff_MUL(node, ADD);
+                    return Diff_MUL(node, ADD, var_for_diff);
                 case DIV:       
-                    return Diff_DIV(node, SUB); 
+                    return Diff_DIV(node, SUB, var_for_diff); 
                 case DEGREE:
-                    return Diff_DEGREE(node);
+                    return Diff_DEGREE(node, var_for_diff);
                 case LN:
-                    return Diff_LN(node);
+                    return Diff_LN(node, var_for_diff);
                 case COS:
-                    return Diff_COS(node);
+                    return Diff_COS(node, var_for_diff);
                 case SIN:
-                    return Diff_SIN(node);
+                    return Diff_SIN(node, var_for_diff);
                 case TG:
-                    return Diff_TG(node);
+                    return Diff_TG(node, var_for_diff);
             }
             break;
         }
@@ -711,7 +586,7 @@ Priorities find_op_priority(Operation operation)
     return ERROR_PRIOR;
 }
 
-static Operation get_operation(const char *buff)
+Operation diff_get_operation(const char *buff)
 {
     char op_sym = buff[0];
 
@@ -741,3 +616,140 @@ static Operation get_operation(const char *buff)
     
     return NOT_OP;
 }
+
+#if 0
+int diff_do_tree(Node *node, Buffer *buff)
+{   
+    char cur_sym = buff->buffer[buff->curr_index];
+    int cur_pos = buff->curr_index;
+
+    if (node->parent == NULL)
+    {
+        input_val_type(node, buff);
+        create_node_if_need(cur_sym, node, buff);
+    }
+
+    if(node->parent != NULL)
+        create_node_if_need(cur_sym, node, buff);
+
+    input_val_type(node, buff);
+
+    cur_sym = buff->buffer[buff->curr_index];
+    cur_pos = buff->curr_index;
+
+    if (exit_node_if_need(cur_sym, buff))
+    {
+        switch_sons_if_need(node);
+        return 0;
+    }
+    
+    create_node_if_need(cur_sym, node, buff);
+
+    input_val_type(node, buff);
+
+    cur_sym = buff->buffer[buff->curr_index];
+    cur_pos = buff->curr_index;
+
+    if (exit_node_if_need(cur_sym, buff))
+    {
+        switch_sons_if_need(node);
+        return 0;
+    }
+
+    switch_sons_if_need(node);
+    return 0;
+}
+
+static int input_val_type(Node *node, Buffer *buff)
+{
+    int cur_sym = buff->buffer[buff->curr_index];
+    int cur_pos = buff->curr_index;
+                                                                                                //todo dint check twice
+    if (isalpha(cur_sym) && (NOT_OP == diff_get_operation(buff->buffer + cur_pos)))
+    {   
+        node->value.var_value = cur_sym;
+        node->priority = VAR_PRIOR;
+        
+        buff->curr_index++;
+        node->type = VAR;
+    }
+    else if(isdigit(cur_sym))
+    {
+        int shift = 0;
+        node->type = NUM;
+        node->priority = NUM_PRIOR;
+
+        sscanf(buff->buffer + cur_pos, "%lf%n", &(node->value.dbl_value), &shift);
+    
+        buff->curr_index += shift;
+    }
+    else if (NOT_OP != diff_get_operation(buff->buffer + cur_pos))
+    {
+        node->type = OP;
+        
+        node->value.op_value = diff_get_operation(buff->buffer + cur_pos);
+        node->priority = find_op_priority(node->value.op_value);
+        int len = len_op(buff->buffer + cur_pos);
+
+        buff->curr_index += len;
+    }
+
+    return 0;
+}
+
+static int create_node_if_need(char cur_sym, Node* node, Buffer *buff)
+{
+    if (cur_sym == '(')
+    {
+        buff->curr_index++;
+        Node *new_node1 = node_ctor();
+        diff_connect_node(node, new_node1);
+        diff_do_tree(new_node1, buff);
+    }
+
+    return 0;
+}
+
+static int exit_node_if_need(char cur_sym, Buffer *buff)
+{
+    if (cur_sym == ')')
+    {
+        buff->curr_index++;
+        return 1;
+    }
+
+    return 0;
+}
+
+Node *diff_connect_node(Node *parent, Node *new_node)
+{
+    new_node->parent = parent;
+    
+    if (parent->l_son == NULL)                 
+    {                 
+        parent->l_son = new_node;       
+    }                                   
+    else if(parent->r_son == NULL)             
+    {                                
+        parent->r_son = new_node;       
+    }                                   
+    else    SOFT_ASS_NO_RET(1);
+
+    return new_node;
+}
+
+static int len_op(const char *operation)
+{
+    int index = 0;
+    
+    if (!isalpha(*operation))
+        return 1;
+    else
+    {
+        while (isalpha(*(operation + index)))
+            index++;
+    }
+
+    return index;
+}
+#endif

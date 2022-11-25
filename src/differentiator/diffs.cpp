@@ -63,43 +63,43 @@ Node *SIN_OP(Node *l_node, Node *r_node)
 Node *TG_OP(Node *l_node, Node *r_node)
 {LINK_WITH_OP(TG);}
 
-Node *Diff_ADD(Node *node, Operation oper_value)
+Node *Diff_ADD(Node *node, Operation oper_value, char var_for_diff)
 {
     return ADD_OP(DL, DR);
 }
 
-Node *Diff_MUL(Node *node, Operation oper_value)
+Node *Diff_MUL(Node *node, Operation oper_value, char var_for_diff)
 {
     return ADD_OP(MUL_OP(DL, CR), MUL_OP(CL, DR));
 }
 
-Node *Diff_DIV(Node *node, Operation oper_value)
+Node *Diff_DIV(Node *node, Operation oper_value, char var_for_diff)
 {   
     
     return DIV_OP(SUB_OP(MUL_OP(DL, CR), MUL_OP(DR, CL)), MUL_OP(CR, CR));
 }
 
-Node *Diff_DEGREE(Node *node)
+Node *Diff_DEGREE(Node *node, char var_for_diff)
 {   
     return MUL_OP(DEGREE_OP(CL, CR),ADD_OP(MUL_OP(DR, LN_OP(NULL, CL)), MUL_OP(MUL_OP(DIV_OP(Create_NUM_node(1), CL), DL), CR)));
 }
  
-Node *Diff_LN(Node *node)
+Node *Diff_LN(Node *node, char var_for_diff)
 {
     return MUL_OP(DIV_OP(Create_NUM_node(1), CR), DR);
 }
 
-Node* Diff_SIN(Node *node)
+Node* Diff_SIN(Node *node, char var_for_diff)
 {
     return MUL_OP(COS_OP(NULL, CR), DR);
 }
 
-Node* Diff_COS(Node *node)
+Node* Diff_COS(Node *node, char var_for_diff)
 {
     return MUL_OP( MUL_OP(Create_NUM_node(-1),SIN_OP(NULL, CR)), DR);
 }
 
-Node *Diff_TG(Node *node)
+Node *Diff_TG(Node *node, char var_for_diff)
 {
     return MUL_OP(DIV_OP(Create_NUM_node(1), DEGREE_OP(COS_OP(NULL, CR), Create_NUM_node(2))), DR);
 }

@@ -42,7 +42,6 @@ Node* get_Num()
 {
     int val = 0;
     const char *old_s = STR;
-    printf("char = %c\n", *STR);
     while (isdigit(*STR))
     {   
         val = val*10 + *STR -'0';
@@ -53,28 +52,53 @@ Node* get_Num()
 
     Node *node = Create_NUM_node((double) val);
     return node;
-}
 
+}
 Node* get_P()
 {
     Node *node = 0;
+    Node *value_node = 0;
+    
+    if (diff_get_operation(STR) != NOT_OP)
+    {
+        Node *op_node = get_UNAR_OP();
+        node = op_node;
+    }
 
     if (*STR == '(')
     {
         STR++;
-        node = get_Expression();
+        value_node = get_Expression();
         assert (*STR == ')');
         STR++;
     }
     else if (isalpha(*STR))
     {
-        node = get_VAR();
+        value_node = get_VAR();
     }
     else
     {
-        node = get_Num();
+        value_node = get_Num();
     }
 
+    if (node)
+        node_connect(node, value_node, RIGHT);
+    else 
+        node = value_node;
+
+    return node;
+}
+
+Node *get_UNAR_OP()
+{   
+    Node *node = Create_OP_node(diff_get_operation(STR));
+
+    while(*STR != '\0' && isalpha(*STR))
+    {   
+        STR++;  
+    }
+
+     
     return node;
 }
 

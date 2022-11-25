@@ -26,7 +26,7 @@ typedef enum
 
 typedef enum 
 {   
-    NOT_OP  = 0,
+    NOT_OP  = -1,
     ADD     = 1,
     SUB     = 2,
     MUL     = 3,

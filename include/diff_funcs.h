@@ -23,9 +23,11 @@ Node *_diff_node_ctor(Type_of_expression type, double dbl_value, Operation op_va
 
 Node *diff_connect_node(Node *parent, Node *new_node);
 
-Node *diff_diff(Node *node);
+Node *diff_diff(Node *node, char var_for_diff);
 
 int diff_simplify(Node *node);
+
+Operation diff_get_operation(const char *buffer);
 
 Priorities find_op_priority(Operation operation);
 
