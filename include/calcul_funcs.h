@@ -1,16 +1,20 @@
 #ifndef CALC_GUARD
 #define CALC_GUARD
 
-int get_General(const char *str);
+#include <tree_funcs.h>
 
-int get_Expression();
+Node *get_General(const char *str);
 
-int get_T();
+Node *get_Expression();
 
-int get_P();
+Node *get_T();
 
-int get_Num();
+Node *get_P();
 
-int get_Degree();
+Node *get_Num();
+
+Node *get_Degree();
+
+Node *get_VAR();
 
 #endif

@@ -1,113 +1,164 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
 #include <assert.h>
-#include <ctype.h>
+#include <string.h>
+#include <unistd.h>
 #include <math.h>
-#include <calcul_funcs.h>
+#include <ctype.h>
+#include <tree_funcs.h>
+#include <tree_debug.h>
+#include <diff_funcs.h>
 #include <general_debug.h>
-const char* s = NULL;
+#include <dsl.h>
+#include <calcul_funcs.h>
 
-int get_General(const char *str)
+const char* STR = NULL;
+
+Node* get_General(const char *str)
 {
-    s = str;
+    STR = str;
 
-    int val = get_Expression();
+    Node* node = get_Expression();
 
-    assert(*s == '\0');
+    assert(*STR == '\0');
 
-    return val;
-} 
-
-int get_Num()
-{
-    int val = 0;
-    const char *old_s = s;
-
-    while (isdigit(*s))
-    {   
-        val = val*10 + *s -'0';
-        s++;
-    }
-
-    assert(s != old_s);
-
-    return val;
+    return node;
 }
 
-int get_P()
+Node *get_VAR()
+{
+    Node *node = 0;
+
+    node = Create_VAR_node(*STR);
+
+    while(*STR != '\0' && isalpha(*STR))
+        STR++;
+    
+    return node;
+}
+
+Node* get_Num()
 {
     int val = 0;
+    const char *old_s = STR;
+    printf("char = %c\n", *STR);
+    while (isdigit(*STR))
+    {   
+        val = val*10 + *STR -'0';
+        STR++;
+    }
 
-    if (*s == '(')
+    assert(STR != old_s);
+
+    Node *node = Create_NUM_node((double) val);
+    return node;
+}
+
+Node* get_P()
+{
+    Node *node = 0;
+
+    if (*STR == '(')
     {
-        s++;
-        val = get_Expression();
-        assert (*s == ')');
-        s++;
+        STR++;
+        node = get_Expression();
+        assert (*STR == ')');
+        STR++;
+    }
+    else if (isalpha(*STR))
+    {
+        node = get_VAR();
     }
     else
     {
-        val = get_Num();
+        node = get_Num();
     }
 
-    return val;
+    return node;
 }
 
-int get_T()
+Node* get_T()
 {
-    int val = 0;
-    val = get_Degree();
+    Node *node = 0;
+    node = get_Degree();
 
-    while(*s == '*' || *s == '/')
+    while(*STR == '*' || *STR == '/')
     {
-        int op = *s;
+        int op = *STR;
 
-        s++;
-        int val2 = get_Degree();
+        STR++;
+        Node* r_node = get_Degree();
         
         if (op == '*')
-            val *= val2;
+        {
+            Node *new_node = Create_OP_node(MUL);
+            node_connect(new_node, node, LEFT);
+            node_connect(new_node, r_node, RIGHT);
+            node = new_node;
+        }
         else 
-            val /= val2;
+        {
+            Node *new_node = Create_OP_node(DIV);
+            node_connect(new_node, node, LEFT);
+            node_connect(new_node, r_node, RIGHT);
+            node = new_node;
+        }
     }
 
-    return val;
+    return node;
 }
 
-int get_Expression()
+Node* get_Expression()
 {
-    int val = 0;
-    val = get_T();
+    Node* node = 0;
+    node = get_T();
 
-    while(*s == '+' || *s == '-')
+    while(*STR == '+' || *STR == '-')
     {
-        int op = *s;
+        int op = *STR;
 
-        s++;
-        int val2 = get_T();
+        STR++;
+        Node* r_node = get_T();
         
         if (op == '+')
-            val += val2;
+        {
+            Node *new_node = Create_OP_node(ADD);
+            node_connect(new_node, node, LEFT);
+            node_connect(new_node, r_node, RIGHT);
+            node = new_node;
+        }
          
         else 
-            val -= val2;
+        {
+            Node *new_node = Create_OP_node(SUB);
+            node_connect(new_node, node, LEFT);
+            node_connect(new_node, r_node, RIGHT);
+            node = new_node;
+        }
     }
 
-    return val;
+    return node;
 }
 
-int get_Degree()
+Node* get_Degree()
 {
-    int val = 0;
+    Node *node = 0;
 
-    val = get_P();
+    node = get_P();
 
-    while(*s == '^')
+    while(*STR == '^')
     {
-        s++;
-        int val2 = get_P();
+        STR++;
+        Node *r_node = get_P();
 
-        val = pow(val, val2);
+        {
+            Node *new_node = Create_OP_node(DEGREE);
+            node_connect(new_node, node, LEFT);
+            node_connect(new_node, r_node, RIGHT);
+            node = new_node;
+        }
     }
 
-    return val;
+    return node;
 }

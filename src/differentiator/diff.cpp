@@ -24,24 +24,24 @@ int main()
     puts(" ");
 
     // diff_do_tree(tree.root, &buff);
-
-    // Node *cool_node = node_copy_node(tree.root);
-
     char *str = buff.buffer;
+    tree.root = get_General(str);
+
+    Node *cool_node = node_copy_node(tree.root);
+
 
     printf("str = %s\n", str);
-    printf("result = %d\n", get_General(str));
 
-    // diff_simplify(cool_node);
+    diff_simplify(cool_node);
 
-    // Node *diff_cool_node = diff_diff(cool_node);
+    Node *diff_cool_node = diff_diff(cool_node);
         
-    // diff_simplify(diff_cool_node);
+    diff_simplify(diff_cool_node);
 
-    // node_dtor(cool_node);
-    // node_dtor(diff_cool_node);
-    // node_dtor_calloc_data(tree.root, buff.buffer, buff.size);
-    // node_dtor(tree.root);
+    node_dtor(cool_node);
+    node_dtor(diff_cool_node);
+    node_dtor_calloc_data(tree.root, buff.buffer, buff.size);
+    node_dtor(tree.root);
     diff_buff_dtor(&buff);
     close_tree_logs();
     return 0;
