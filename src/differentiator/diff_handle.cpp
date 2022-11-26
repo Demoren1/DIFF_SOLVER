@@ -12,6 +12,10 @@
 #include <general_debug.h>
 #include <dsl.h>
 
+static int check_replay(Var var_arr[], int cur_index, char var_name);
+
+static int replace_var_on_num(Node *node, char var_name, double var_value);
+
 static int wrap_equivalents(Node *node);
 
 static Pos_of_node find_zero_side(Node *node);
@@ -413,6 +417,73 @@ static int compute_constants(Node *node)
         changes += compute_constants(node->r_son);
 
     return changes;
+}
+
+int diff_ctor_var_arr(Node *node, Var *var_arr, int cur_index)
+{
+    if (!node && cur_index > MAX_VARS)
+    {
+        return cur_index;
+    }
+    
+    if (node->type == VAR && check_replay(var_arr, cur_index, node->value.var_value))
+    {   
+        var_arr[cur_index].var_name = node->value.var_value;
+        printf("%c = ", node->value.var_value);
+        scanf("%lf", &var_arr[cur_index].var_value);
+        cur_index++;
+    }
+
+    if (node->l_son)
+        cur_index = diff_ctor_var_arr(node->l_son, var_arr, cur_index);
+    if (node->r_son)
+        cur_index = diff_ctor_var_arr(node->r_son, var_arr, cur_index);
+
+    return cur_index;
+}
+
+static int check_replay(Var var_arr[], int cur_index, char var_name)
+{   
+    for (int index = 0; index < cur_index; index++)
+    {
+        if (var_name == var_arr[index].var_name)
+            return 0;
+    }
+
+    return 1;
+}
+
+double diff_calc_tree(Node *node, Var var_arr[], int n_vars)
+{
+    for (int index = 0; index < n_vars && index < MAX_VARS; index++)
+    {   
+        replace_var_on_num(node, var_arr[index].var_name, var_arr[index].var_value);
+    }
+    diff_simplify(node);
+    // open_log_pdf();
+
+    return node->value.dbl_value;
+}
+
+static int replace_var_on_num(Node *node, char var_name, double var_value)
+{
+    if (!node)
+        return 0;
+
+    if (node->type == VAR && node->value.var_value == var_name)
+    {
+        node->value.dbl_value = var_value;
+        node->value.var_value = 'E';
+        node->priority = NUM_PRIOR;
+        node->type = NUM;
+    }
+
+    if (node->l_son)
+        replace_var_on_num(node->l_son, var_name, var_value);
+    if (node->r_son)
+        replace_var_on_num(node->r_son, var_name, var_value);
+
+    return 0;
 }
 
 static double count_num(Node *node, Node *l_son, Node *r_son)

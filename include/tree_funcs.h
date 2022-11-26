@@ -75,7 +75,7 @@ typedef struct Node_t
 
 typedef struct Var_t
 {
-    char name_var;
+    char var_name;
     double var_value = NAN;
 } Var;
 

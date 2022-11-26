@@ -83,6 +83,8 @@ int open_log_pdf()
     fclose(TREE_LOGS);
 
     system("xdg-open tree_logs.pdf");
+    TREE_LOGS = fopen(TREE_LOGS_PATH, "a+");
+
     return 0;
 }
 

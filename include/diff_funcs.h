@@ -11,6 +11,8 @@ typedef struct Buffer_t
     int curr_index;
 } Buffer;
 
+#define MAX_VARS 128
+
 int diff_handle_src(const char* path_to_file, Buffer *buff);
 
 int diff_size_for_buffer(FILE *BASE, const char *path_to_file);
@@ -30,5 +32,9 @@ int diff_simplify(Node *node);
 Operation diff_get_operation(const char *buffer);
 
 Priorities find_op_priority(Operation operation);
+
+int diff_ctor_var_arr(Node *node, Var *var_arr, int cur_index);
+
+double diff_calc_tree(Node *node, Var var_arr[], int n_vars);
 
 #endif
