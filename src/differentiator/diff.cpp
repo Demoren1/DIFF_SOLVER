@@ -24,15 +24,14 @@ int main()
     char *str = buff.buffer;
     
     printf("str = %s\n", buff.buffer);
+
     tree.root = get_General(str);
 
     Node *cool_node = node_copy_node(tree.root);
 
     diff_simplify(cool_node);
 
-    Node *diff_cool_node = diff_diff(cool_node, 'y');
-
-    
+    Node *diff_cool_node = diff_diff(cool_node, 'x');
         
     diff_simplify(diff_cool_node);
 
@@ -42,5 +41,7 @@ int main()
     node_dtor(tree.root);
     diff_buff_dtor(&buff);
     close_tree_logs();
+    
+    open_log_pdf();
     return 0;
 }

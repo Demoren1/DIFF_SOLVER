@@ -38,3 +38,5 @@
 .obj/**
 *.jpeg
 *vscode/**
+*.tex
+*.log

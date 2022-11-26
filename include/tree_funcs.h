@@ -53,7 +53,7 @@ typedef enum
     ADD_PRIOR       = 1,
     SUB_PRIOR       = 1,
     MUL_PRIOR       = 2,
-    DIV_PRIOR       = 3,
+    DIV_PRIOR       = 2,
     DEGREE_PRIOR    = 5,
     UNAR_OP_PRIOR   = 10
 } Priorities;
@@ -72,6 +72,12 @@ typedef struct Node_t
     Priorities priority;
 
 } Node;
+
+typedef struct Var_t
+{
+    char name_var;
+    double var_value = NAN;
+} Var;
 
 typedef struct Tree_t
 {

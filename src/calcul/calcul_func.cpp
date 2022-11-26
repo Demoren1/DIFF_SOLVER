@@ -40,14 +40,16 @@ Node *get_VAR()
 
 Node* get_Num()
 {
-    int val = 0;
+    double val = 0;
+    int shift = 0;
     const char *old_s = STR;
-    while (isdigit(*STR))
+
+    if (isdigit(*STR))
     {   
-        val = val*10 + *STR -'0';
-        STR++;
+        sscanf(STR, "%lf%n", &val, &shift);
     }
 
+    STR += shift;
     assert(STR != old_s);
 
     Node *node = Create_NUM_node((double) val);

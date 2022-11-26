@@ -17,13 +17,21 @@ static int get_op(Operation operation, char res[]);
 
 int open_tree_logs()
 {
-    TREE_LOGS = fopen("tree_logs.txt", "w");
+    TREE_LOGS = fopen(TREE_LOGS_PATH, "w");
 
     if (NULL == TREE_LOGS)
     {
         printf("Cant open logs");
         return -1;
     }
+
+    fprintf(TREE_LOGS,  "\\documentclass{article}\n"
+                        "\\usepackage[utf8]{inputenc}\n"
+                        "\\usepackage{graphicx}\n"
+                        "\\usepackage[14pt]{extsizes}\n"
+                        "\\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}\n"
+                        "\\begin{document}\n");
+    fflush(TREE_LOGS);
 
     HTM_LOGS = fopen("graph_log.htm", "w");
 
@@ -46,23 +54,37 @@ int close_tree_logs()
     return 0;
 }
 
-
-
-
 int tree_dump(Node *node, Mode_of_print mode,  const char* name_function, const char* name_file, const char* name_variable, int num_line)
 {
-    fprintf(TREE_LOGS,  "Dump called from %s file, in %s func, in %d line, name of variable = %s\n\n",
-                         name_file, name_function, num_line, name_variable);    
+    TREE_LOGS = fopen(TREE_LOGS_PATH, "a+");
+
+    // fprintf(TREE_LOGS,  "Dump called from %s file, in %s func, in %d line, name of variable = %s\n\n",
+    //                     name_file, name_function, num_line, name_variable);    
     fprintf(HTM_LOGS,   "<h2> Dump called from %s file, in %s func, in %d line, name of variable = %s\n\n",
                         name_file, name_function, num_line, name_variable);
-    fprintf(TREE_LOGS, "$$ ");
+    fprintf(TREE_LOGS, "\n$$\n");
     tree_print(node, mode);
-    fprintf(TREE_LOGS, " $$\n\n");
+    fprintf(TREE_LOGS, "\n$$\n");
+    fflush(TREE_LOGS);
 
     return 0;
-
 }
 
+int open_log_pdf()
+{   
+    TREE_LOGS = fopen(TREE_LOGS_PATH, "a+");
+    fprintf(TREE_LOGS,  "\\end{document}");
+    fflush(TREE_LOGS);
+    
+    char command[512] ={};
+    sprintf(command, "pdflatex %s", TREE_LOGS_PATH);
+    system(command);
+    
+    fclose(TREE_LOGS);
+
+    system("xdg-open tree_logs.pdf");
+    return 0;
+}
 
 int tree_print(const Node *node, const Mode_of_print mode)
 {
@@ -70,6 +92,9 @@ int tree_print(const Node *node, const Mode_of_print mode)
     {
         return 0;
     }
+    Operation op = node->value.op_value;
+    if (op == DIV)
+        fprintf(TREE_LOGS, "\\frac{");
 
     if (node->parent && node->priority && node->parent->priority > node->priority)
     {
@@ -82,7 +107,14 @@ int tree_print(const Node *node, const Mode_of_print mode)
         {   
             tree_print(node->l_son, mode);
         }
+
     PRINT_DIFF_IN_LOG_IF(mode == INORDER, node);
+
+    if (op == DIV)
+        fprintf(TREE_LOGS, "}{");
+
+    if(op == DEGREE)
+        fprintf(TREE_LOGS, "{");
 
     if (node->r_son)
     {
@@ -95,6 +127,9 @@ int tree_print(const Node *node, const Mode_of_print mode)
     {
         fprintf(TREE_LOGS, ")");
     }
+
+    if (op == DIV || op == DEGREE)
+        fprintf(TREE_LOGS, "}");
 
     fflush(TREE_LOGS);
     return 0;
@@ -295,12 +330,12 @@ static int get_op(Operation operation, char res[])
         }
         case MUL:
         {
-            strncpy(res, "*", MAX_LEN_OP);
+            strncpy(res, "\\cdot", MAX_LEN_OP);
             break;
         }
         case DIV:
         {
-            strncpy(res, "/", MAX_LEN_OP);
+            strncpy(res, "", MAX_LEN_OP);
             break;
         }
         case DEGREE:

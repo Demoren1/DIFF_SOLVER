@@ -133,7 +133,7 @@ int diff_simplify(Node *node)
         changes = 0;
         changes += compute_constants(node);
         changes += wrap_equivalents(node);
-        TREE_DUMP(node, INORDER);
+        // TREE_DUMP(node, INORDER);
         // changes = 0;
     }
 

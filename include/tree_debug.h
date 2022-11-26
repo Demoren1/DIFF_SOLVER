@@ -25,6 +25,8 @@
 
 #define TREE_LOGS tree_logs
 
+#define TREE_LOGS_PATH "tree_logs.tex"
+
 #define HTM_LOGS htm_logs
 
 #define TREE_GRAPH_LOGS tree_graph_logs
@@ -49,6 +51,8 @@ int tree_graph_dump(Node *node, Mode_of_print mode,  const char* name_function, 
 int tree_error_decoder(int code);
 
 int print_in_logs(const char *str,...);
+
+int open_log_pdf();
 
 enum Tree_Errors
 {

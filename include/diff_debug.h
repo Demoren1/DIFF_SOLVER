@@ -9,7 +9,7 @@
                                                             {                                                   \
                                                                 char res[MAX_LEN_OP];                                   \
                                                                 get_op(node->value.op_value, res);              \
-                                                                fprintf(TREE_LOGS, "%s", res);                  \
+                                                                fprintf(TREE_LOGS, " %s ", res);                  \
                                                             }                                                   \
                                                             else if(node->type == VAR)                          \
                                                             {                                                   \
