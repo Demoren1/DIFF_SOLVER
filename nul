@@ -1,0 +1,364 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./tree_logs.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/extsizes/extsizes.sty
+
+Package ExtSizes Warning: It is better to use one of the extsizes classes,
+ if you can.
+
+(/usr/share/texlive/texmf-dist/tex/latex/extsizes/size14.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./tree_logs.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+Overfull \hbox (230.36595pt too wide) detected at line 54
+\OT1/cmr/m/n/14.4 (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.
+4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/
+cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A
+ \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/i
+t/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)
+) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr
+/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^
+^A \OT1/cmr/m/n/14.4 (1)) + \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \OMS/c
+msy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) 
+\OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m
+/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A
+ \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2)
+ \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0))
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (1956.57344pt too wide) detected at line 78
+\OT1/cmr/m/n/14.4 (((0) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m
+/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT
+1/cmr/m/n/14.4 5)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/
+14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 
+^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/
+m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 
+(1))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1
+/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14
+.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OM
+S/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cms
+y/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 
+(0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cm
+r/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2) \OMS/cm
+sy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.
+4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/
+m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (\OMS/cmsy/m/
+n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT
+1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14
+.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cm
+sy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + 
+(2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) \OMS/cmsy/m/n/14.4 ^^A \OT1/c
+mr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 
+:\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) 
+\OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/
+cmr/m/n/14.4 (0)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/1
+4.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT
+1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^
+^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m
+/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (
+1)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/c
+mr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4
+ ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) +
+ (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0)) + \OML/cmm/m/it/14.4 cos\OT1
+/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.
+4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cms
+y/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (
+0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \O
+MS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cm
+r/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (2) \OMS/cm
+sy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0))
+
+Overfull \hbox (281.59125pt too wide) detected at line 82
+\OT1/cmr/m/n/14.4 ((0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m
+/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A 
+\OT1/cmr/m/n/14.4 (2)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + (\OMS/cms
+y/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 si
+n\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0)) \OMS/c
+msy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14
+.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 (1) \OMS/c
+msy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4
+ (0 + 0) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \
+OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/
+14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0) + \OML/cmm/m/it/14.4 
+cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0 + 0 + 
+0)
+
+Overfull \hbox (8933.71356pt too wide) detected at line 106
+\OT1/cmr/m/n/14.4 (((0) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m
+/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT
+1/cmr/m/n/14.4 5)) + (0) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/
+m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\O
+T1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n
+/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \O
+MS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (0) \OMS/cmsy/m/n/14.4 ^^A \OML/c
+mm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4
+ (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/
+n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1
+/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (\OMS/cm
+sy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((
+\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it
+/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML
+/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 
+((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/
+n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) \OMS/cmsy/m/n/14.
+4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cm
+m/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.
+4 (1)) + \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 
+^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/
+m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 
+(1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2) \OMS/cmsy/m/n/14.4
+ ^^A \OT1/cmr/m/n/14.4 (0)))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OM
+S/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5
+) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + ((0) \OMS/cmsy/m/n/14.4
+ ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/c
+mr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) + (\OMS/cmsy/m/n/14.4 ^
+^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/
+n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1
+/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/1
+4.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS
+/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/
+14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/c
+mr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cm
+sy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n
+/14.4 (0)) + ((0) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.
+4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/
+m/n/14.4 5)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^
+^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr
+/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/1
+4.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1))) 
+\OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m
+/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A
+ \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2)
+ \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cm
+r/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((
+2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/
+14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \
+OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n
+/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 
+(1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.4
+ ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) +
+ (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (2) \OMS/cmsy/m/n/14.4 ^^A 
+\OT1/cmr/m/n/14.4 (0))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy
+/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2
+) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (((0) \OMS/cmsy/m/n/14.4 ^^A 
+\OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/
+n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) + (\OMS/cmsy/m/n/14.4 ^^@\OT
+1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.
+4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/
+m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^
+^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy
+/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 
+((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/
+n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (\OMS/cmsy/m/n/
+14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/
+cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4
+ :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy
+/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0
+) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT
+1/cmr/m/n/14.4 (1) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0))) \OMS/cm
+sy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4
+ (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/c
+mr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2) \OMS/c
+msy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0)) + (((0) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm
+/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (
+0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/
+n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \
+OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4
+ 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/
+cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.
+4 ^^A \OT1/cmr/m/n/14.4 (1))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OM
+S/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5
+) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (\OMS/cmsy/m/n/14.4 ^^@
+\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/
+14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/c
+mr/m/n/14.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.
+4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/c
+msy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/
+n/14.4 (1) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0))) \OMS/cmsy/m/n/1
+4.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/
+cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/1
+4.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 (0)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \
+OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/
+n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/c
+msy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.
+4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/
+cmr/m/n/14.4 (1)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/1
+4.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS
+/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/
+m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy
+/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/1
+4.4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (2) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 (0)) + (((0) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14
+.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cm
+m/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1
+) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy
+/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OM
+S/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/
+14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 (1))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m
+/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) 
+\OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr
+/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2
+) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/1
+4.4 5)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (
+1) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0))) \OMS/cmsy/m/n/14.4 ^^A 
+\OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it
+/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) 
++ (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (2) \OMS/cmsy/m/n/14.4 ^^A
+ \OT1/cmr/m/n/14.4 (0)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy
+/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^
+^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML
+/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/
+14.4 (1)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A 
+\OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/
+n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4
+ (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.
+4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) 
++ (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (2) \OMS/cmsy/m/n/14.4 ^^A
+ \OT1/cmr/m/n/14.4 (0)) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy
+/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 ((2) \OMS/cmsy/m/n/14.4 ^
+^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML
+/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/
+14.4 (1)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A 
+\OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/
+n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4
+ (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.
+4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) 
++ (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (2) \OMS/cmsy/m/n/14.4 ^^A
+ \OT1/cmr/m/n/14.4 (0)) + \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 ((2) \OMS/cms
+y/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5)) \O
+MS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n
+/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 5) + (0) \OMS/cmsy/m/n/14.4 ^^A \
+OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \
+OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/c
+mr/m/n/14.4 (1) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/c
+msy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/
+n/14.4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (1) + (0) \OMS/cmsy/m
+/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.
+4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14
+.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0)
+ + (0) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (2) \OMS/cmsy/m/n/14.4 ^^
+A \OT1/cmr/m/n/14.4 (0))
+
+Overfull \hbox (2161.87181pt too wide) detected at line 110
+\OT1/cmr/m/n/14.4 ((0 + 0 + 0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OM
+S/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4
+ 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 (1) \OMS/cms
+y/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (
+2) + \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cm
+r/m/n/14.4 (0 + 0))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + (0 + (\OMS/
+cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4
+ cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2)) \OMS/cm
+sy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0) + (0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cm
+r/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 (1
+) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr
+/m/n/14.4 (0 + 0) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/1
+4.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1
+/cmr/m/n/14.4 (0 + 0 + 0 + 0)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + (
+(0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cm
+m/m/it/14.4 cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (
+2)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/
+cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 
+(1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0)) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 (0 + 0) + ((0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OM
+S/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/1
+4.4 ^^A \OT1/cmr/m/n/14.4 (2)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + (
+\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it
+/14.4 sin\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0)
+) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0) + (\OMS/cmsy/m/n/14.4 ^^@\OT
+1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.
+4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/
+cmr/m/n/14.4 (0 + 0 + 0 + 0) + ((0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1
+) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/
+m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2
+) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm
+/m/it/14.4 sin\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0
+ + 0)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0) + (\OMS/cmsy/m/n/14.4 ^
+^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/
+n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A 
+\OT1/cmr/m/n/14.4 (0 + 0 + 0 + 0) + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1)
+ \OMS/cmsy/m/n/14.4 ^^A \OML/cmm/m/it/14.4 sin\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m
+/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 +
+ 0 + 0 + 0) + \OML/cmm/m/it/14.4 cos\OT1/cmr/m/n/14.4 (1) \OMS/cmsy/m/n/14.4 ^^
+A \OT1/cmr/m/n/14.4 (0 + 0 + 0 + 0 + 0 + 0 + 0 + 0)
+
+Overfull \hbox (729.95393pt too wide) detected at line 114
+\OT1/cmr/m/n/14.4 ((0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m
+/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS
+/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 84
+1471) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/
+cmr/m/n/14.4 (2) + (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 540302) \OMS/cmsy/m/
+n/14.4 ^^A \OT1/cmr/m/n/14.4 (0))) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2)
+ + 0 + 0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \
+OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 841471) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 (0)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + 
+0 + 0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OT1
+/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 841471) \OMS/cmsy/m/n/14.
+4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + 0 + 
+(\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n
+/14.4 (0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 841471) \OMS/cmsy/m/n/14.4 ^^A \O
+T1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (\OMS/cmsy/m
+/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0\OML
+/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 841471) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/1
+4.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (0\OML/cmm/m/it/14.4 :\O
+T1/cmr/m/n/14.4 540302) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0 + 0)
+[2]
+Overfull \hbox (276.9924pt too wide) detected at line 118
+\OT1/cmr/m/n/14.4 ((0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 1) \OMS/cmsy/m
+/n/14.4 ^^A \OT1/cmr/m/n/14.4 ((\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 0\OML/c
+mm/m/it/14.4 :\OT1/cmr/m/n/14.4 841471) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.
+4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + 0)) \OMS/cmsy/m/n/14.4 ^^A
+ \OT1/cmr/m/n/14.4 (2) + 0 + 0 + (\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 0\OML
+/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 841471) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/1
+4.4 (0)) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) + (\OMS/cmsy/m/n/14.4 ^^@
+\OT1/cmr/m/n/14.4 0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 841471) \OMS/cmsy/m/n/
+14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (0) + (
+\OMS/cmsy/m/n/14.4 ^^@\OT1/cmr/m/n/14.4 0\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 
+841471) \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 (2) \OMS/cmsy/m/n/14.4 ^^A \OT
+1/cmr/m/n/14.4 (0) + 0 + 0
+[3] (./tree_logs.aux) )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb>
+Output written on tree_logs.pdf (3 pages, 32116 bytes).
+Transcript written on tree_logs.log.

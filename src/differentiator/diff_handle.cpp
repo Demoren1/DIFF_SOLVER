@@ -455,22 +455,26 @@ static int check_replay(Var var_arr[], int cur_index, char var_name)
 
 double diff_calc_tree(Node *node, Var var_arr[], int n_vars)
 {
+    Node* tmp_node = node_copy_node(node);
     for (int index = 0; index < n_vars && index < MAX_VARS; index++)
     {   
-        replace_var_on_num(node, var_arr[index].var_name, var_arr[index].var_value);
+        replace_var_on_num(tmp_node, var_arr[index].var_name, var_arr[index].var_value);
     }
-    diff_simplify(node);
-    // open_log_pdf();
 
-    return node->value.dbl_value;
+    diff_simplify(tmp_node);
+    // open_log_pdf();
+    double result = tmp_node->value.dbl_value;
+
+    node_dtor(tmp_node);
+
+    return result;
 }
 
 static int replace_var_on_num(Node *node, char var_name, double var_value)
 {
     if (!node)
         return 0;
-
-    if (node->type == VAR && node->value.var_value == var_name)
+    if (node->type == VAR && !isnan(var_value) && node->value.var_value == var_name)
     {
         node->value.dbl_value = var_value;
         node->value.var_value = 'E';
@@ -484,6 +488,30 @@ static int replace_var_on_num(Node *node, char var_name, double var_value)
         replace_var_on_num(node->r_son, var_name, var_value);
 
     return 0;
+}
+
+double diff_tailor_one_var(Node *node, int depth, char var_name, double var_value, double x0)
+{
+    Var var = {.var_name = var_name, .var_value = var_value};
+    Node *tmp_node1 = node_copy_node(node);
+    Node *tmp_node2 = {};
+    double delta_x0 = var_value - x0;
+
+    double result = 0;
+
+    for (int level = 0; level < depth; level++)
+    {
+        result += diff_calc_tree(tmp_node1, &var, 1) * delta_x0;
+        delta_x0 *= delta_x0 / (level + (level==0));
+        tmp_node2 = node_copy_node(tmp_node1);
+        node_dtor(tmp_node1);
+        tmp_node1 = diff_diff(tmp_node2, var_name);
+        node_dtor(tmp_node2);
+    }
+
+    node_dtor(tmp_node1);
+
+    return result;
 }
 
 static double count_num(Node *node, Node *l_son, Node *r_son)
@@ -558,8 +586,6 @@ static double count_num(Node *node, Node *l_son, Node *r_son)
 
     return result;
 }
-
-
 
 static int switch_sons_if_need(Node *node)
 {

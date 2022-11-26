@@ -77,7 +77,7 @@ int open_log_pdf()
     fflush(TREE_LOGS);
     
     char command[512] ={};
-    sprintf(command, "pdflatex %s", TREE_LOGS_PATH);
+    sprintf(command, "pdflatex %s > nul 2>&1", TREE_LOGS_PATH);
     system(command);
     
     fclose(TREE_LOGS);

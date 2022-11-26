@@ -46,7 +46,11 @@ Node* get_Num()
 
     if (isdigit(*STR))
     {   
-        sscanf(STR, "%lf%n", &val, &shift);
+        char *end_str = NULL;
+        val = strtod(STR, &end_str);
+
+        if (end_str != NULL)
+            STR = end_str;
     }
 
     STR += shift;
