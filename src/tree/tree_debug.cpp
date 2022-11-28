@@ -332,7 +332,7 @@ static int get_op(Operation operation, char res[])
         }
         case MUL:
         {
-            strncpy(res, "\\cdot", MAX_LEN_OP);
+            strncpy(res, "*", MAX_LEN_OP);
             break;
         }
         case DIV:

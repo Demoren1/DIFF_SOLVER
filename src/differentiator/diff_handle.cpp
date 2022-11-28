@@ -131,16 +131,14 @@ int diff_simplify(Node *node)
 {
     int changes = 1;
 
+    // TREE_DUMP(node, INORDER);
     while(changes > 0)
     {       
-        TREE_DUMP(node, INORDER);
         changes = 0;
         changes += compute_constants(node);
         changes += wrap_equivalents(node);
-        // TREE_DUMP(node, INORDER);
-        // changes = 0;
     }
-
+    // TREE_DUMP(node, INORDER);
     return changes;
 }
 
@@ -463,8 +461,8 @@ double diff_calc_tree(Node *node, Var var_arr[], int n_vars)
 
     diff_simplify(tmp_node);
     // open_log_pdf();
-    double result = tmp_node->value.dbl_value;
-
+    double result = (fabs(tmp_node->value.dbl_value) > __DBL_EPSILON__) ? tmp_node->value.dbl_value : 0;
+    TREE_DUMP(tmp_node, INORDER);
     node_dtor(tmp_node);
 
     return result;
@@ -492,23 +490,35 @@ static int replace_var_on_num(Node *node, char var_name, double var_value)
 
 double diff_tailor_one_var(Node *node, int depth, char var_name, double var_value, double x0)
 {
-    Var var = {.var_name = var_name, .var_value = var_value};
+    Var var = {.var_name = var_name, .var_value = x0};
     Node *tmp_node1 = node_copy_node(node);
     Node *tmp_node2 = {};
     double delta_x0 = var_value - x0;
-
     double result = 0;
+    double divider = 1;
 
     for (int level = 0; level < depth; level++)
     {
-        result += diff_calc_tree(tmp_node1, &var, 1) * delta_x0;
-        delta_x0 *= delta_x0 / (level + (level==0));
+        diff_simplify(tmp_node1);
+        TREE_DUMP(tmp_node1, INORDER);
+        divider *= (level + (level == 0));
+        double tmp_result = diff_calc_tree(tmp_node1, &var, 1);
+        
+        tmp_result *= pow(delta_x0, level) / divider;
+
+        result += tmp_result;
+        
+        // printf("level %d\n", level);    
+        // printf("delta x0 = %g\n", pow(delta_x0, level));
+        // printf("divider = %g\n", divider);
+        // printf("tmp_result %g\n", tmp_result);
+        
         tmp_node2 = node_copy_node(tmp_node1);
         node_dtor(tmp_node1);
+        
         tmp_node1 = diff_diff(tmp_node2, var_name);
         node_dtor(tmp_node2);
     }
-
     node_dtor(tmp_node1);
 
     return result;
