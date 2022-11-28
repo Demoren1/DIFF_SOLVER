@@ -77,14 +77,13 @@ int open_log_pdf()
     fflush(TREE_LOGS);
     
     char command[512] ={};
-    sprintf(command, "pdflatex %s > nul 2>&1", TREE_LOGS_PATH);
+    sprintf(command, "echo pdflatex %s > nul 2>&1", TREE_LOGS_PATH);
     system(command);
-    
     fclose(TREE_LOGS);
 
     system("xdg-open tree_logs.pdf");
     TREE_LOGS = fopen(TREE_LOGS_PATH, "a+");
-
+    
     return 0;
 }
 
@@ -124,15 +123,16 @@ int tree_print(const Node *node, const Mode_of_print mode)
     }
     
     PRINT_DIFF_IN_LOG_IF(mode == POSTORDER, node);
+
+    if (op == DIV || op == DEGREE)
+        fprintf(TREE_LOGS, "}");
     
     if (node->parent && node->priority && node->parent->priority > node->priority)
     {
         fprintf(TREE_LOGS, ")");
     }
 
-    if (op == DIV || op == DEGREE)
-        fprintf(TREE_LOGS, "}");
-
+    
     fflush(TREE_LOGS);
     return 0;
 }

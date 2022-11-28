@@ -131,14 +131,14 @@ int diff_simplify(Node *node)
 {
     int changes = 1;
 
-    // TREE_DUMP(node, INORDER);
+    TREE_DUMP(node, INORDER);
     while(changes > 0)
-    {       
+    {
         changes = 0;
         changes += compute_constants(node);
         changes += wrap_equivalents(node);
     }
-    // TREE_DUMP(node, INORDER);
+    TREE_DUMP(node, INORDER);
     return changes;
 }
 
@@ -508,11 +508,6 @@ double diff_tailor_one_var(Node *node, int depth, char var_name, double var_valu
 
         result += tmp_result;
         
-        // printf("level %d\n", level);    
-        // printf("delta x0 = %g\n", pow(delta_x0, level));
-        // printf("divider = %g\n", divider);
-        // printf("tmp_result %g\n", tmp_result);
-        
         tmp_node2 = node_copy_node(tmp_node1);
         node_dtor(tmp_node1);
         
@@ -724,139 +719,3 @@ Operation diff_get_operation(const char *buff)
     return NOT_OP;
 }
 
-#if 0
-int diff_do_tree(Node *node, Buffer *buff)
-{   
-    char cur_sym = buff->buffer[buff->curr_index];
-    int cur_pos = buff->curr_index;
-
-    if (node->parent == NULL)
-    {
-        input_val_type(node, buff);
-        create_node_if_need(cur_sym, node, buff);
-    }
-
-    if(node->parent != NULL)
-        create_node_if_need(cur_sym, node, buff);
-
-    input_val_type(node, buff);
-
-    cur_sym = buff->buffer[buff->curr_index];
-    cur_pos = buff->curr_index;
-
-    if (exit_node_if_need(cur_sym, buff))
-    {
-        switch_sons_if_need(node);
-        return 0;
-    }
-    
-    create_node_if_need(cur_sym, node, buff);
-
-    input_val_type(node, buff);
-
-    cur_sym = buff->buffer[buff->curr_index];
-    cur_pos = buff->curr_index;
-
-    if (exit_node_if_need(cur_sym, buff))
-    {
-        switch_sons_if_need(node);
-        return 0;
-    }
-
-    switch_sons_if_need(node);
-    return 0;
-}
-
-static int input_val_type(Node *node, Buffer *buff)
-{
-    int cur_sym = buff->buffer[buff->curr_index];
-    int cur_pos = buff->curr_index;
-                                                                                                //todo dint check twice
-    if (isalpha(cur_sym) && (NOT_OP == diff_get_operation(buff->buffer + cur_pos)))
-    {   
-        node->value.var_value = cur_sym;
-        node->priority = VAR_PRIOR;
-        
-        buff->curr_index++;
-        node->type = VAR;
-    }
-    else if(isdigit(cur_sym))
-    {
-        int shift = 0;
-        node->type = NUM;
-        node->priority = NUM_PRIOR;
-
-        sscanf(buff->buffer + cur_pos, "%lf%n", &(node->value.dbl_value), &shift);
-    
-        buff->curr_index += shift;
-    }
-    else if (NOT_OP != diff_get_operation(buff->buffer + cur_pos))
-    {
-        node->type = OP;
-        
-        node->value.op_value = diff_get_operation(buff->buffer + cur_pos);
-        node->priority = find_op_priority(node->value.op_value);
-        int len = len_op(buff->buffer + cur_pos);
-
-        buff->curr_index += len;
-    }
-
-    return 0;
-}
-
-static int create_node_if_need(char cur_sym, Node* node, Buffer *buff)
-{
-    if (cur_sym == '(')
-    {
-        buff->curr_index++;
-        Node *new_node1 = node_ctor();
-        diff_connect_node(node, new_node1);
-        diff_do_tree(new_node1, buff);
-    }
-
-    return 0;
-}
-
-static int exit_node_if_need(char cur_sym, Buffer *buff)
-{
-    if (cur_sym == ')')
-    {
-        buff->curr_index++;
-        return 1;
-    }
-
-    return 0;
-}
-
-Node *diff_connect_node(Node *parent, Node *new_node)
-{
-    new_node->parent = parent;
-    
-    if (parent->l_son == NULL)                 
-    {                 
-        parent->l_son = new_node;       
-    }                                   
-    else if(parent->r_son == NULL)             
-    {                                
-        parent->r_son = new_node;       
-    }                                   
-    else    SOFT_ASS_NO_RET(1);
-
-    return new_node;
-}
-
-static int len_op(const char *operation)
-{
-    int index = 0;
-    
-    if (!isalpha(*operation))
-        return 1;
-    else
-    {
-        while (isalpha(*(operation + index)))
-            index++;
-    }
-
-    return index;
-}
-#endif
